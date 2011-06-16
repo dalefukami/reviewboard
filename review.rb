@@ -12,7 +12,8 @@ class Review
 #XXX     @reviewboard.get_review_draft_comments(review_request_id, draft_id)
 #XXX     @reviewboard.get_review_draft_comment(review_request_id, draft_id, 1992)
 #XXX     @reviewboard.get_review_diffs(review_request_id)
-    @reviewboard.post_review_draft_comment(review_request_id, draft_id)
+#XXX     @reviewboard.post_review_draft_comment(review_request_id, draft_id)
+    @reviewboard.get_new_file_line_map(review_request_id)
   end
 end
 

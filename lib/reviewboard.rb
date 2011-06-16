@@ -54,6 +54,36 @@ class ReviewBoard
     pp value
   end
 
+  def get_review_diff_chunks(review_number)
+    review_path = "review-requests/#{review_number}/diffs/1/files/25083"
+    response = make_request "#{review_path}/"
+
+    value = JSON.parse(response.body)
+    pp value
+  end
+
+  def get_new_file_line_map(review_number)
+    review_path = "review-requests/#{review_number}/diffs/1/files/25083"
+    response = make_request "#{review_path}/"
+
+    value = JSON.parse(response.body)
+
+    source_line_map = {}
+    new_line_map = {}
+
+    chunks = value['diff_data']['chunks']
+    chunks.each do |chunk|
+      chunk['lines'].each do |line|
+        diff_line_number, source_line_number, source_text, source_replaced_indexes, new_line_number, new_text, new_replaced_indexes, is_whitespace_only = line
+        source_line_map[source_line_number] = diff_line_number unless source_line_number == ''
+        new_line_map[new_line_number] = diff_line_number unless new_line_number == ''
+      end
+    end
+
+    line_maps = {'source' => source_line_map, 'new' => new_line_map}
+    pp line_maps
+  end
+
   def post_review_draft_comment(review_number, review_id)
     review_path = "review-requests/#{review_number}/reviews/#{review_id}/diff-comments"
     response = post "#{review_path}/", {:first_line => 460, :text => 'my first comment', :num_lines => 3, :filediff_id => 25083}
