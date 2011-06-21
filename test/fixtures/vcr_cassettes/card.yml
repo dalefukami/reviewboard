@@ -1,0 +1,279 @@
+--- 
+- !ruby/struct:VCR::HTTPInteraction 
+  request: !ruby/struct:VCR::Request 
+    method: :get
+    uri: https://mingle.curvedms.org:443/api/v2/projects/curve_hero/cards/6185.xml
+    body: 
+    headers: 
+  response: !ruby/struct:VCR::Response 
+    status: !ruby/struct:VCR::ResponseStatus 
+      code: 200
+      message: OK
+    headers: 
+      date: 
+      - Wed, 08 Jun 2011 17:18:18 GMT
+      server: 
+      - Jetty(6.1.19)
+      content-type: 
+      - application/xml; charset=utf-8
+      cache-control: 
+      - no-cache, max-age=0
+      x-runtime: 
+      - "321"
+      content-length: 
+      - "10297"
+      set-cookie: 
+      - last-visited-project=curve_hero; path=/; expires=Fri, 08-Jun-2012 17:18:18 GMT
+      - mingle_3_2_session_id=5198a5f6c69cf1c8504b21b436e64e95; path=/; HttpOnly
+      via: 
+      - 1.1 mingle.curvedms.org
+      expires: 
+      - Wed, 08 Jun 2011 17:18:18 GMT
+    body: |
+      <card>
+        <name>E-Statement with DMA</name>
+        <description>*Business Analyst:* Megan
+      
+      *Lead Designer:*
+      
+      *Developers:* Mike
+      
+      *Balance of Values:* Garage
+      
+      *Estimated Budget:* 2 Weeks
+      
+      *Prerequisites:* none
+      
+      *Why?*
+      * This has been requested by many offices, and in some cases is preventing offices from moving onto Hero.
+      * Offices are upset that they are wasting time printing off the statements, and stuffing them in envelopes. 
+      
+      *Mission:*
+      * Users should be able to send bulk Statements to DMA where DMA will print and mail out the statements for the office.
+      
+      *Requirements:*
+      * This service must be available for American and Canadian offices.
+      * Users must be able to send bulk Statements from Reports to DMA. *- Needs Design*
+      ** Users must be notified of the Status of the Bulk Statements that have been passed to DMA.
+      *** Sent or Unsent
+      ** On each file that is sent to DMA, we must send the following information:
+      *** RP Name
+      *** RP Billing Address
+      *** Statement Date Range
+      *** Balance Due
+      *** List of all billing transactions that happened during the Statement Period with the associated information:
+      **** Date
+      **** Patient Name
+      **** Description of transaction (ie, Write-off, Payment - Debit Card, 11112 - 2 Units of Scaling)
+      **** Site
+      **** Amount (Charge, Credits, Deposits)
+      * A Correspondence entry should be created when the statement is sent to DMA.
+      ** The Module Description should say E-Statement Created for Gary Ackerman owing $460.00
+      *** This new Type of Correspondence should be available in the Correspondence Module and Correspondence Sidekick for filtering. 
+      
+      !correspondenceModule.png!
+      
+      ** The Sidekick Description should say:
+      *** When collapsed: E-Statement Created
+      
+      !collapsedCorr.png!
+      
+      *** When expanded: At 12:57pm by Liza Powers DMA Statement Created for Gary Ackerman owing $460.00
+      
+      !expandedCorr.png!
+      
+      * Last Statement Date should be added to all Patient Demographic Reports (Custom and Base).
+      ** This column will display the last date that a Statement was created for the Patient.
+      ** Columns added to Existing Reports should not be visible on the Report, but should be available if the user wishes to display the column.
+      * Last Statement Type should be added to all Patient Demographic Reports (Custom and Base).
+      ** This column will display the last type of Statement that was created for the Patient. Applicable types will be:
+      *** Individual Statement - This is created through the Patient's Billing Module
+      *** Bulk Statement - This is created through the Report Module and is created in the office.
+      *** E-Statement - This is created through the Report Module and is sent off to DMA. 
+      ** Columns added to Existing Reports should not be visible on the Report, but should be available if the user wishes to display the column.
+      * A Historical Statement must be added to Hero
+      ** The report must consist of the following columns:
+      *** Date - This is the date that a statement was created.
+      *** Time - This is the time that a statement was created.
+      *** User - This is the user that created the Statement.
+      *** Statement Method - This is the Statement Method that was used to created the Statement.  The options are:
+      **** Individual Statement - This is created through the Patient's Billing Module.
+      **** Bulk Statement - This is created through the Report Module and is created in the office.
+      **** E-Statement - This is created through Report Module and is sent off to DMA. 
+      *** RP Full Name - This is the name of the Responsible Party on the Statements.
+      **** There should be a row in the Report every time a Statement is created for a Responsible Party
+      *** Patients on Statement - This is a comma separated list of the family members that appears on the statement
+      *** Patient Balance on Statement - This is the Patient Balance on the Statement.
+      * Curve (basically Corey) needs a Report to track how many Statements have actually been sent to DMA by each office for Billing purposes.
+      ** The Report should include the following information:
+      *** Office (database)
+      *** Site Name
+      *** Date
+      *** Time
+      *** User who printed the statement
+      *** Type (For now this will just be Statements, but want to include it in case we allow other types of printouts in the future)
+      *** Number of Statements (This would be the number of RP in the file.)
+      *** Number of Pages
+      *** Status (Sent or Unsent)
+      ** This Report should be in a CSV and available regularly. 
+      
+      *Design:*
+      
+      !Send_to_DMA-01.png!
+      
+      !Send_to_DMA-02.png!</description>
+        <card_type url="https://mingle.curvedms.org/api/v2/projects/curve_hero/card_types/32.xml">
+          <name>Hero Card</name>
+        </card_type>
+        <id type="integer">2586</id>
+        <number type="integer">6185</number>
+        <project url="https://mingle.curvedms.org/api/v2/projects/curve_hero.xml">
+          <name>Curve Hero</name>
+          <identifier>curve_hero</identifier>
+        </project>
+        <version type="integer">74</version>
+        <project_card_rank type="integer">2260</project_card_rank>
+        <created_on type="datetime">2010-06-25T15:55:18Z</created_on>
+        <modified_on type="datetime">2011-06-01T16:32:20Z</modified_on>
+        <modified_by url="https://mingle.curvedms.org/api/v2/users/16.xml">
+          <name>Info</name>
+          <login>info</login>
+        </modified_by>
+        <created_by url="https://mingle.curvedms.org/api/v2/users/16.xml">
+          <name>Info</name>
+          <login>info</login>
+        </created_by>
+        <properties type="array">
+          <property type_description="Managed text list" hidden="false">
+            <name>Card Type</name>
+            <value>Suggestion</value>
+          </property>
+          <property type_description="Managed text list" hidden="false">
+            <name>Card Status</name>
+            <value>In QA</value>
+          </property>
+          <property type_description="Managed text list" hidden="false">
+            <name>Module</name>
+            <value>Statements</value>
+          </property>
+          <property type_description="Managed text list" hidden="false">
+            <name>Product Priority</name>
+            <value nil="true"></value>
+          </property>
+          <property type_description="Managed text list" hidden="false">
+            <name>Department Priority</name>
+            <value>Top Priority</value>
+          </property>
+          <property type_description="Managed text list" hidden="false">
+            <name>Development Priority</name>
+            <value nil="true"></value>
+          </property>
+          <property type_description="Managed text list" hidden="false">
+            <name>Escalation Level</name>
+            <value>Fire</value>
+          </property>
+          <property type_description="Date" hidden="false">
+            <name>Reported Date</name>
+            <value type="date">2010-06-25</value>
+          </property>
+          <property type_description="Managed text list" hidden="false">
+            <name>Release Reported</name>
+            <value nil="true"></value>
+          </property>
+          <property type_description="Automatically generated from the team list" hidden="false">
+            <name>Requirements Person</name>
+            <value url="https://mingle.curvedms.org/api/v2/users/6.xml">
+              <name>Megan</name>
+              <login>megan</login>
+            </value>
+          </property>
+          <property type_description="Automatically generated from the team list" hidden="false">
+            <name>Design Person</name>
+            <value url="https://mingle.curvedms.org/api/v2/users/21.xml">
+              <name>Devon</name>
+              <login>devon</login>
+            </value>
+          </property>
+          <property type_description="Automatically generated from the team list" hidden="false">
+            <name>Developer</name>
+            <value url="https://mingle.curvedms.org/api/v2/users/19.xml">
+              <name>Mike</name>
+              <login>mike</login>
+            </value>
+          </property>
+          <property type_description="Any number" hidden="true">
+            <name>Developer Estimate</name>
+            <value nil="true"></value>
+          </property>
+          <property type_description="Any text" hidden="false">
+            <name>Link to Estimate</name>
+            <value nil="true"></value>
+          </property>
+          <property type_description="Managed text list" hidden="false">
+            <name>Database</name>
+            <value>ziondental</value>
+          </property>
+          <property type_description="Automatically generated from the team list" hidden="false">
+            <name>QA Person</name>
+            <value url="https://mingle.curvedms.org/api/v2/users/27.xml">
+              <name>Chris</name>
+              <login>chris</login>
+            </value>
+          </property>
+          <property type_description="Managed text list" hidden="false">
+            <name>Customer Service Expert</name>
+            <value>Brandon Woodbury</value>
+          </property>
+          <property type_description="Managed text list" hidden="false">
+            <name>Ticket Number</name>
+            <value>TKT01570</value>
+          </property>
+          <property type_description="Date" hidden="false">
+            <name>Deployed On</name>
+            <value nil="true"></value>
+          </property>
+          <property type_description="Managed text list" hidden="false">
+            <name>Release Planned</name>
+            <value>Unassigned to Release</value>
+          </property>
+          <property type_description="Managed text list" hidden="false">
+            <name>Fix Type</name>
+            <value>Code</value>
+          </property>
+          <property type_description="Any text" hidden="false">
+            <name>Link to Wave</name>
+            <value>https://wave.google.com/a/curvedental.com/waveref/curvedental.com/w+2BVVHRuPE</value>
+          </property>
+          <property type_description="Card" hidden="false">
+            <name>Master Card Number</name>
+            <value nil="true"></value>
+          </property>
+          <property type_description="Any text" hidden="false">
+            <name>Master Ticket Number</name>
+            <value nil="true"></value>
+          </property>
+          <property type_description="Managed text list" hidden="true">
+            <name>Requires Tech Review</name>
+            <value>No</value>
+          </property>
+          <property type_description="Managed text list" hidden="false">
+            <name>SRED Assessment</name>
+            <value>No</value>
+          </property>
+          <property type_description="Any text" hidden="false">
+            <name>SRED Doc</name>
+            <value nil="true"></value>
+          </property>
+          <property type_description="Managed text list" hidden="false">
+            <name>Change to Conversions Script?</name>
+            <value nil="true"></value>
+          </property>
+          <property type_description="Managed text list" hidden="false">
+            <name>Data Fix Type</name>
+            <value nil="true"></value>
+          </property>
+        </properties>
+        <tags>statements</tags>
+      </card>
+
+    http_version: "1.1"

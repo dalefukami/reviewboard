@@ -1,0 +1,235 @@
+--- 
+- !ruby/struct:VCR::HTTPInteraction 
+  request: !ruby/struct:VCR::Request 
+    method: :get
+    uri: https://mingle.curvedms.org:443/api/v2/projects/curve_hero/cards/6185/comments.xml
+    body: 
+    headers: 
+  response: !ruby/struct:VCR::Response 
+    status: !ruby/struct:VCR::ResponseStatus 
+      code: 200
+      message: OK
+    headers: 
+      date: 
+      - Wed, 08 Jun 2011 17:18:18 GMT
+      server: 
+      - Jetty(6.1.19)
+      content-type: 
+      - application/xml; charset=utf-8
+      cache-control: 
+      - no-cache, max-age=0
+      x-runtime: 
+      - "218"
+      content-length: 
+      - "9937"
+      set-cookie: 
+      - last-visited-project=curve_hero; path=/; expires=Fri, 08-Jun-2012 17:18:18 GMT
+      - mingle_3_2_session_id=2e13fb04c69fac2da7aa3517ac8669d3; path=/; HttpOnly
+      via: 
+      - 1.1 mingle.curvedms.org
+      expires: 
+      - Wed, 08 Jun 2011 17:18:18 GMT
+    body: |
+      <?xml version="1.0" encoding="UTF-8"?>
+      <card_comments type="array">
+        <comment>
+          <content>Wayne Brickey said: 
+      B7586 was attached to 2421 (the statement redesign, not the e-statements... not sure if that was an accident.)
+      ##id:49650##</content>
+          <created_by url="https://mingle.curvedms.org/api/v2/users/16.xml">
+            <name>Info</name>
+            <login>info</login>
+          </created_by>
+          <created_at type="datetime">2011-06-01T16:32:20Z</created_at>
+        </comment>
+        <comment>
+          <content>A new test file was sent through. It contains the same data as the previous 2, but Mike made some changes to the information that was being sent.
+      
+      The site information in the Details section in the Statement was displaying the Office Site, rather than the tooth numbers, quadrants, sextants, or materials.
+      
+      Traci from DMA needs to add in the Balance Forward into the Details section, and a calculation for the Balance Due.</content>
+          <created_by url="https://mingle.curvedms.org/api/v2/users/6.xml">
+            <name>Megan</name>
+            <login>megan</login>
+          </created_by>
+          <created_at type="datetime">2011-05-30T15:40:31Z</created_at>
+        </comment>
+        <comment>
+          <content>Two test instances created from Beta office client data dumps and Mikes 6185 branch. Batch of statements sent from each test instance to DMA today. Test instances created were:
+      curvedev/evergreen_dma
+      curvdev/dma_lysander
+      Waiting for response from DMA.</content>
+          <created_by url="https://mingle.curvedms.org/api/v2/users/27.xml">
+            <name>Chris</name>
+            <login>chris</login>
+          </created_by>
+          <created_at type="datetime">2011-05-13T03:40:05Z</created_at>
+        </comment>
+        <comment>
+          <content>We are now going to test this by taking a dump of customer data from a Beta office and transmitting the data to DMA.</content>
+          <created_by url="https://mingle.curvedms.org/api/v2/users/27.xml">
+            <name>Chris</name>
+            <login>chris</login>
+          </created_by>
+          <created_at type="datetime">2011-05-03T15:27:09Z</created_at>
+        </comment>
+        <comment>
+          <content>US and CAN data sent to DMA on 4/20/11.
+      Test instances -
+      chris_local
+      chris_local_us</content>
+          <created_by url="https://mingle.curvedms.org/api/v2/users/27.xml">
+            <name>Chris</name>
+            <login>chris</login>
+          </created_by>
+          <created_at type="datetime">2011-04-21T16:50:02Z</created_at>
+        </comment>
+        <comment>
+          <content>Oh, and it wont matter what order the addresses are inserted into the reset db. There is no relationship between patient name and address. Just need to ensure the patients have 'real' addresses. I spent 2 hours on the Canada Post website trawling for addresses and manually entering them in db. Dont want to enter them again if I can avoid it !</content>
+          <created_by url="https://mingle.curvedms.org/api/v2/users/27.xml">
+            <name>Chris</name>
+            <login>chris</login>
+          </created_by>
+          <created_at type="datetime">2011-04-14T17:34:33Z</created_at>
+        </comment>
+        <comment>
+          <content>Mike, if you can save the current addresses in chris_local data and insert them into the reset db that would be helpful. Feel free to go ahead and reset the db when you have time. Thanks.</content>
+          <created_by url="https://mingle.curvedms.org/api/v2/users/27.xml">
+            <name>Chris</name>
+            <login>chris</login>
+          </created_by>
+          <created_at type="datetime">2011-04-14T17:31:12Z</created_at>
+        </comment>
+        <comment>
+          <content>Statements are now generated for all responsible parties appearing on a report, regardless of any transactions they might have. Removed the total "payments" field from the generated XML and added three new fields: balanceForward (total), insuranceOwing, totalOwing.
+      
+      These fields were created as per feedback from Megan.
+      
+      Chris - this update would require your db to reset. I won't do it right away just in case you want to copy down some data.</content>
+          <created_by url="https://mingle.curvedms.org/api/v2/users/19.xml">
+            <name>Mike</name>
+            <login>mike</login>
+          </created_by>
+          <created_at type="datetime">2011-04-14T16:59:07Z</created_at>
+        </comment>
+        <comment>
+          <content>E-statements are currently only generated for statements that have transactions which exist within the date range selected within a report. Mike is going to change logic so e-statements are generated for all patients that appear in a report regardless of whether there are transactions within the date range selected for report.</content>
+          <created_by url="https://mingle.curvedms.org/api/v2/users/27.xml">
+            <name>Chris</name>
+            <login>chris</login>
+          </created_by>
+          <created_at type="datetime">2011-04-13T19:55:14Z</created_at>
+        </comment>
+        <comment>
+          <content>Looks like all the statements displayed in RP aging report are not getting sent. Need to work with Mike to determine why.</content>
+          <created_by url="https://mingle.curvedms.org/api/v2/users/27.xml">
+            <name>Chris</name>
+            <login>chris</login>
+          </created_by>
+          <created_at type="datetime">2011-04-13T19:06:50Z</created_at>
+        </comment>
+        <comment>
+          <content>For QA - created a placeholder in Reports test suite for future test cases once we figure out how to test this.</content>
+          <created_by url="https://mingle.curvedms.org/api/v2/users/27.xml">
+            <name>Chris</name>
+            <login>chris</login>
+          </created_by>
+          <created_at type="datetime">2011-04-06T20:11:49Z</created_at>
+        </comment>
+        <comment>
+          <content>Please come see me when this goes into testing. There is need to be some setup that will need to take place depending on where testing will take place for this feature.
+      
+      In order to test the actual statements that are sent to DMA, then there will be some additional setup I'll need to do in order to send them fake data, and not real data with actual patient names.</content>
+          <created_by url="https://mingle.curvedms.org/api/v2/users/19.xml">
+            <name>Mike</name>
+            <login>mike</login>
+          </created_by>
+          <created_at type="datetime">2011-03-23T20:41:40Z</created_at>
+        </comment>
+        <comment>
+          <content>back from code review</content>
+          <created_by url="https://mingle.curvedms.org/api/v2/users/19.xml">
+            <name>Mike</name>
+            <login>mike</login>
+          </created_by>
+          <created_at type="datetime">2011-02-28T17:47:16Z</created_at>
+        </comment>
+        <comment>
+          <content>Corey O'Keefe said: 
+      Changes:
+      Card Status changed from In Requirements to Reported
+      
+      ##id:18958##</content>
+          <created_by url="https://mingle.curvedms.org/api/v2/users/16.xml">
+            <name>Info</name>
+            <login>info</login>
+          </created_by>
+          <created_at type="datetime">2011-02-23T23:52:11Z</created_at>
+        </comment>
+        <comment>
+          <content>Brandon Woodbury said: 
+      &lt;span id="messages_layer" _parenttab="interactions" style="position: absolute; width: 100%; left: 0px; visibility: inherit;"&gt;Would like to 
+      see Curve be able to send out their statements for them. Kind&lt;br&gt;of like
+       a third party company would do right now.&lt;/span&gt;
+      ##id:10013##</content>
+          <created_by url="https://mingle.curvedms.org/api/v2/users/16.xml">
+            <name>Info</name>
+            <login>info</login>
+          </created_by>
+          <created_at type="datetime">2011-02-23T23:52:05Z</created_at>
+        </comment>
+        <comment>
+          <content>4282 Zion Dental said: 
+      Automatic Statements sent from Curve
+      ##id:10012##</content>
+          <created_by url="https://mingle.curvedms.org/api/v2/users/16.xml">
+            <name>Info</name>
+            <login>info</login>
+          </created_by>
+          <created_at type="datetime">2011-02-23T23:51:59Z</created_at>
+        </comment>
+        <comment>
+          <content>Ready in curvehero/mike_design</content>
+          <created_by url="https://mingle.curvedms.org/api/v2/users/19.xml">
+            <name>Mike</name>
+            <login>mike</login>
+          </created_by>
+          <created_at type="datetime">2011-02-11T13:55:33Z</created_at>
+        </comment>
+        <comment>
+          <content>Mike has done some refactoring of the Generate Statement Code.  This should also be applied to the bulk Statement Generation, since we run into memory issues when trying to generate Statements for many patients or lots of transactions.</content>
+          <created_by url="https://mingle.curvedms.org/api/v2/users/6.xml">
+            <name>Megan</name>
+            <login>megan</login>
+          </created_by>
+          <created_at type="datetime">2011-02-02T17:18:11Z</created_at>
+        </comment>
+        <comment>
+          <content>From Wave: I thought we were looking for design on a different part of this feature? I need a design for a page that the clients will see when they want to see what electronic statements they've already made? This would be something similar to the "Claims" module, but have a filter for "Sent"/"Unsent". 
+      
+      The above design is OK, but I was already finished working on that part of that feature. Do you want me to go back and re-do it?</content>
+          <created_by url="https://mingle.curvedms.org/api/v2/users/19.xml">
+            <name>Mike</name>
+            <login>mike</login>
+          </created_by>
+          <created_at type="datetime">2011-01-31T20:53:26Z</created_at>
+        </comment>
+        <comment>
+          <content>Finishing work on script that will process unsent estatement batches for clients.</content>
+          <created_by url="https://mingle.curvedms.org/api/v2/users/19.xml">
+            <name>Mike</name>
+            <login>mike</login>
+          </created_by>
+          <created_at type="datetime">2011-01-11T13:48:03Z</created_at>
+        </comment>
+        <comment>
+          <content>How is the user going to select which statements to send? Are we putting a button somewhere? I can't see where this is specificfied on the Mingle card / wave. I know how to generate a batch of statments from reports, but am I just supposed to decide myself what the workflow for this feature is?</content>
+          <created_by url="https://mingle.curvedms.org/api/v2/users/19.xml">
+            <name>Mike</name>
+            <login>mike</login>
+          </created_by>
+          <created_at type="datetime">2010-12-21T21:05:55Z</created_at>
+        </comment>
+      </card_comments>
+
+    http_version: "1.1"

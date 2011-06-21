@@ -1,0 +1,3950 @@
+--- 
+- !ruby/struct:VCR::HTTPInteraction 
+  request: !ruby/struct:VCR::Request 
+    method: :get
+    uri: https://mingle.curvedms.org:443/api/v2/projects/curve_hero/cards.xml?page=1
+    body: 
+    headers: 
+  response: !ruby/struct:VCR::Response 
+    status: !ruby/struct:VCR::ResponseStatus 
+      code: 200
+      message: OK
+    headers: 
+      date: 
+      - Wed, 08 Jun 2011 19:21:32 GMT
+      server: 
+      - Jetty(6.1.19)
+      content-type: 
+      - application/xml; charset=utf-8
+      cache-control: 
+      - no-cache, max-age=0
+      x-runtime: 
+      - "2442"
+      content-length: 
+      - "159371"
+      set-cookie: 
+      - last-visited-project=curve_hero; path=/; expires=Fri, 08-Jun-2012 19:21:32 GMT
+      - mingle_3_2_session_id=6220fdf45555795d09024ee7df5295c0; path=/; HttpOnly
+      via: 
+      - 1.1 mingle.curvedms.org
+      expires: 
+      - Wed, 08 Jun 2011 19:21:32 GMT
+    body: |
+      <?xml version="1.0" encoding="UTF-8"?>
+      <cards type="array">
+        <card>
+          <name>fixes for allocation migration - dangstorp</name>
+          <description>there are a few different issues here that must be fixed before the allocation migration.
+      
+      Issue 1 - deleted line items
+      Responsible Party: Dave Lorence
+      Invoice 122194
+      
+      after the patch, this invoice should open, and the balance should be correct. the root cause was fixed with card #9417
+      
+      Issue 2 - Invoice refund has entire amount put towards one line item instead of spread across the line items. 
+      Responsible Party: Ken Gareau
+      Invoice 100706
+      Invoice refund 102210
+      after the patch, nothing should change, except for the amounts that are on each line item in that particular refund. the end result should be the same.
+      
+      Issue 3 - adjustment was spread incorrectly, resulting in an incorrect overpayment. 
+      Responsible Party: Shyla Tanner
+      Invoice 100387
+      adjustment 103392
+      After the patch, this invoice should not look weird (eg. balance of 0.01), and account summary should match what is in the ledger.
+      The root cause for this is that the adjustment used to have the potential of being of by a penny, depending on the number which was entered. this is fixed, however, i was unable to find the exact card. Another card for a similar issue is card #7745.</description>
+          <card_type url="https://mingle.curvedms.org/api/v2/projects/curve_hero/card_types/32.xml">
+            <name>Hero Card</name>
+          </card_type>
+          <id type="integer">12536</id>
+          <number type="integer">9934</number>
+          <project url="https://mingle.curvedms.org/api/v2/projects/curve_hero.xml">
+            <name>Curve Hero</name>
+            <identifier>curve_hero</identifier>
+          </project>
+          <version type="integer">5</version>
+          <project_card_rank type="integer">5838</project_card_rank>
+          <created_on type="datetime">2011-06-08T15:00:49Z</created_on>
+          <modified_on type="datetime">2011-06-08T17:58:19Z</modified_on>
+          <modified_by url="https://mingle.curvedms.org/api/v2/users/6.xml">
+            <name>Megan</name>
+            <login>megan</login>
+          </modified_by>
+          <created_by url="https://mingle.curvedms.org/api/v2/users/5.xml">
+            <name>Joel</name>
+            <login>joel</login>
+          </created_by>
+          <properties type="array">
+            <property type_description="Managed text list" hidden="false">
+              <name>Card Type</name>
+              <value>QA</value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Card Status</name>
+              <value>Code Review</value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Module</name>
+              <value>Billing</value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Product Priority</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Department Priority</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Development Priority</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Escalation Level</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Date" hidden="false">
+              <name>Reported Date</name>
+              <value type="date">2011-06-08</value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Release Reported</name>
+              <value>3.37</value>
+            </property>
+            <property type_description="Automatically generated from the team list" hidden="false">
+              <name>Requirements Person</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Automatically generated from the team list" hidden="false">
+              <name>Design Person</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Automatically generated from the team list" hidden="false">
+              <name>Developer</name>
+              <value url="https://mingle.curvedms.org/api/v2/users/5.xml">
+                <name>Joel</name>
+                <login>joel</login>
+              </value>
+            </property>
+            <property type_description="Any number" hidden="true">
+              <name>Developer Estimate</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Any text" hidden="false">
+              <name>Link to Estimate</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Database</name>
+              <value>dangstorp</value>
+            </property>
+            <property type_description="Automatically generated from the team list" hidden="false">
+              <name>QA Person</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Customer Service Expert</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Ticket Number</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Date" hidden="false">
+              <name>Deployed On</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Release Planned</name>
+              <value>3.36</value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Fix Type</name>
+              <value>Data</value>
+            </property>
+            <property type_description="Any text" hidden="false">
+              <name>Link to Wave</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Card" hidden="false">
+              <name>Master Card Number</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Any text" hidden="false">
+              <name>Master Ticket Number</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="true">
+              <name>Requires Tech Review</name>
+              <value>No</value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>SRED Assessment</name>
+              <value>No</value>
+            </property>
+            <property type_description="Any text" hidden="false">
+              <name>SRED Doc</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Change to Conversions Script?</name>
+              <value>No</value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Data Fix Type</name>
+              <value nil="true"></value>
+            </property>
+          </properties>
+          <tags>Data Fixes for 7166</tags>
+        </card>
+        <card>
+          <name>deleted line items</name>
+          <description>This data fix is for deleted line items. The root cause for this was fixed in card #9417.
+      
+      Two patients are affected: Anna Joyce Johnson, and Jeffery Gibeau
+      The two invoices in question are: 83 (Anna) and 111(Jeffery)
+      Both invoices have been voided, so before the patch, you will not be able to view the invoice history, and after it, you will. There should also not be any inconsistencies between the ledger and the accounts summary after the patch.</description>
+          <card_type url="https://mingle.curvedms.org/api/v2/projects/curve_hero/card_types/32.xml">
+            <name>Hero Card</name>
+          </card_type>
+          <id type="integer">12535</id>
+          <number type="integer">9933</number>
+          <project url="https://mingle.curvedms.org/api/v2/projects/curve_hero.xml">
+            <name>Curve Hero</name>
+            <identifier>curve_hero</identifier>
+          </project>
+          <version type="integer">5</version>
+          <project_card_rank type="integer">5837</project_card_rank>
+          <created_on type="datetime">2011-06-08T14:53:14Z</created_on>
+          <modified_on type="datetime">2011-06-08T17:57:54Z</modified_on>
+          <modified_by url="https://mingle.curvedms.org/api/v2/users/6.xml">
+            <name>Megan</name>
+            <login>megan</login>
+          </modified_by>
+          <created_by url="https://mingle.curvedms.org/api/v2/users/5.xml">
+            <name>Joel</name>
+            <login>joel</login>
+          </created_by>
+          <properties type="array">
+            <property type_description="Managed text list" hidden="false">
+              <name>Card Type</name>
+              <value>QA</value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Card Status</name>
+              <value>Code Review</value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Module</name>
+              <value>Billing</value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Product Priority</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Department Priority</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Development Priority</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Escalation Level</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Date" hidden="false">
+              <name>Reported Date</name>
+              <value type="date">2011-06-08</value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Release Reported</name>
+              <value>3.37</value>
+            </property>
+            <property type_description="Automatically generated from the team list" hidden="false">
+              <name>Requirements Person</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Automatically generated from the team list" hidden="false">
+              <name>Design Person</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Automatically generated from the team list" hidden="false">
+              <name>Developer</name>
+              <value url="https://mingle.curvedms.org/api/v2/users/5.xml">
+                <name>Joel</name>
+                <login>joel</login>
+              </value>
+            </property>
+            <property type_description="Any number" hidden="true">
+              <name>Developer Estimate</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Any text" hidden="false">
+              <name>Link to Estimate</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Database</name>
+              <value>champney</value>
+            </property>
+            <property type_description="Automatically generated from the team list" hidden="false">
+              <name>QA Person</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Customer Service Expert</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Ticket Number</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Date" hidden="false">
+              <name>Deployed On</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Release Planned</name>
+              <value>3.36</value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Fix Type</name>
+              <value>Data</value>
+            </property>
+            <property type_description="Any text" hidden="false">
+              <name>Link to Wave</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Card" hidden="false">
+              <name>Master Card Number</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Any text" hidden="false">
+              <name>Master Ticket Number</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="true">
+              <name>Requires Tech Review</name>
+              <value>No</value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>SRED Assessment</name>
+              <value>No</value>
+            </property>
+            <property type_description="Any text" hidden="false">
+              <name>SRED Doc</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Change to Conversions Script?</name>
+              <value>No</value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Data Fix Type</name>
+              <value nil="true"></value>
+            </property>
+          </properties>
+          <tags>Data Fixes for 7166</tags>
+        </card>
+        <card>
+          <name>deleted an invoice credit twice</name>
+          <description>it is currently possible to delete an invoice credit more than once if you have the ledger open in more than one location. 
+      
+      This is a data fix for albertson in which we will remove an extra delete invoice credit correction. 
+      
+      Responsible Party: Brenda McDowell
+      
+      Brenda's ledger will look weird before the patch is applied (invoice owing of $76, but no outstanding balance). after the patch, the accounts summary should match what is showing in the ledger.</description>
+          <card_type url="https://mingle.curvedms.org/api/v2/projects/curve_hero/card_types/32.xml">
+            <name>Hero Card</name>
+          </card_type>
+          <id type="integer">12534</id>
+          <number type="integer">9932</number>
+          <project url="https://mingle.curvedms.org/api/v2/projects/curve_hero.xml">
+            <name>Curve Hero</name>
+            <identifier>curve_hero</identifier>
+          </project>
+          <version type="integer">6</version>
+          <project_card_rank type="integer">5836</project_card_rank>
+          <created_on type="datetime">2011-06-08T14:37:43Z</created_on>
+          <modified_on type="datetime">2011-06-08T17:57:35Z</modified_on>
+          <modified_by url="https://mingle.curvedms.org/api/v2/users/6.xml">
+            <name>Megan</name>
+            <login>megan</login>
+          </modified_by>
+          <created_by url="https://mingle.curvedms.org/api/v2/users/5.xml">
+            <name>Joel</name>
+            <login>joel</login>
+          </created_by>
+          <properties type="array">
+            <property type_description="Managed text list" hidden="false">
+              <name>Card Type</name>
+              <value>QA</value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Card Status</name>
+              <value>Code Review</value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Module</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Product Priority</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Department Priority</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Development Priority</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Escalation Level</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Date" hidden="false">
+              <name>Reported Date</name>
+              <value type="date">2011-06-08</value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Release Reported</name>
+              <value>3.37</value>
+            </property>
+            <property type_description="Automatically generated from the team list" hidden="false">
+              <name>Requirements Person</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Automatically generated from the team list" hidden="false">
+              <name>Design Person</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Automatically generated from the team list" hidden="false">
+              <name>Developer</name>
+              <value url="https://mingle.curvedms.org/api/v2/users/5.xml">
+                <name>Joel</name>
+                <login>joel</login>
+              </value>
+            </property>
+            <property type_description="Any number" hidden="true">
+              <name>Developer Estimate</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Any text" hidden="false">
+              <name>Link to Estimate</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Database</name>
+              <value>albertson</value>
+            </property>
+            <property type_description="Automatically generated from the team list" hidden="false">
+              <name>QA Person</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Customer Service Expert</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Ticket Number</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Date" hidden="false">
+              <name>Deployed On</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Release Planned</name>
+              <value>3.36</value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Fix Type</name>
+              <value>Data</value>
+            </property>
+            <property type_description="Any text" hidden="false">
+              <name>Link to Wave</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Card" hidden="false">
+              <name>Master Card Number</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Any text" hidden="false">
+              <name>Master Ticket Number</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="true">
+              <name>Requires Tech Review</name>
+              <value>No</value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>SRED Assessment</name>
+              <value>No</value>
+            </property>
+            <property type_description="Any text" hidden="false">
+              <name>SRED Doc</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Change to Conversions Script?</name>
+              <value>No</value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Data Fix Type</name>
+              <value nil="true"></value>
+            </property>
+          </properties>
+          <tags>Data Fixes for 7166</tags>
+        </card>
+        <card>
+          <name>data fix for allocation migration - acedental</name>
+          <description>Responsible Party: Melody Norrad
+      
+      -Although this is extremely old data, this issue will cause inconsistencies with the allocation migration, and therefore must be fixed. This was caused by an improperly generated overpayment, and the issue has been there since before conversion.-
+      
+      although we could fix this, it actually seems to be more confusing after the fix. as it is super old data, i no longer think it's worth doing.</description>
+          <card_type url="https://mingle.curvedms.org/api/v2/projects/curve_hero/card_types/32.xml">
+            <name>Hero Card</name>
+          </card_type>
+          <id type="integer">12533</id>
+          <number type="integer">9931</number>
+          <project url="https://mingle.curvedms.org/api/v2/projects/curve_hero.xml">
+            <name>Curve Hero</name>
+            <identifier>curve_hero</identifier>
+          </project>
+          <version type="integer">4</version>
+          <project_card_rank type="integer">5835</project_card_rank>
+          <created_on type="datetime">2011-06-08T14:25:57Z</created_on>
+          <modified_on type="datetime">2011-06-08T17:56:48Z</modified_on>
+          <modified_by url="https://mingle.curvedms.org/api/v2/users/6.xml">
+            <name>Megan</name>
+            <login>megan</login>
+          </modified_by>
+          <created_by url="https://mingle.curvedms.org/api/v2/users/5.xml">
+            <name>Joel</name>
+            <login>joel</login>
+          </created_by>
+          <properties type="array">
+            <property type_description="Managed text list" hidden="false">
+              <name>Card Type</name>
+              <value>QA</value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Card Status</name>
+              <value>Discarded/Duplicate</value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Module</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Product Priority</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Department Priority</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Development Priority</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Escalation Level</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Date" hidden="false">
+              <name>Reported Date</name>
+              <value type="date">2011-06-08</value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Release Reported</name>
+              <value>3.37</value>
+            </property>
+            <property type_description="Automatically generated from the team list" hidden="false">
+              <name>Requirements Person</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Automatically generated from the team list" hidden="false">
+              <name>Design Person</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Automatically generated from the team list" hidden="false">
+              <name>Developer</name>
+              <value url="https://mingle.curvedms.org/api/v2/users/5.xml">
+                <name>Joel</name>
+                <login>joel</login>
+              </value>
+            </property>
+            <property type_description="Any number" hidden="true">
+              <name>Developer Estimate</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Any text" hidden="false">
+              <name>Link to Estimate</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Database</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Automatically generated from the team list" hidden="false">
+              <name>QA Person</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Customer Service Expert</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Ticket Number</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Date" hidden="false">
+              <name>Deployed On</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Release Planned</name>
+              <value>Unassigned to Release</value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Fix Type</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Any text" hidden="false">
+              <name>Link to Wave</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Card" hidden="false">
+              <name>Master Card Number</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Any text" hidden="false">
+              <name>Master Ticket Number</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="true">
+              <name>Requires Tech Review</name>
+              <value>No</value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>SRED Assessment</name>
+              <value>No</value>
+            </property>
+            <property type_description="Any text" hidden="false">
+              <name>SRED Doc</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Change to Conversions Script?</name>
+              <value>No</value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Data Fix Type</name>
+              <value nil="true"></value>
+            </property>
+          </properties>
+          <tags>Data Fixes for 7166</tags>
+        </card>
+        <card>
+          <name>Deleting fee guide redirects to wrong "transfer fee guide" action</name>
+          <description># Attach a fee guide to a patient
+      # Try to delete the fee guide
+      ** There's an alert telling you that you can't delete the fee guide because it's being used. If you click 'yes' to go perform a transfer it is bringing you to an old url that is no longer used. It should take you to the same place as the "Transfer fee guides" link
+      
+      It's possible that the same issue exists for fee guides attached to appointments and insurance plans.</description>
+          <card_type url="https://mingle.curvedms.org/api/v2/projects/curve_hero/card_types/32.xml">
+            <name>Hero Card</name>
+          </card_type>
+          <id type="integer">12532</id>
+          <number type="integer">9930</number>
+          <project url="https://mingle.curvedms.org/api/v2/projects/curve_hero.xml">
+            <name>Curve Hero</name>
+            <identifier>curve_hero</identifier>
+          </project>
+          <version type="integer">4</version>
+          <project_card_rank type="integer">5832</project_card_rank>
+          <created_on type="datetime">2011-06-08T13:44:33Z</created_on>
+          <modified_on type="datetime">2011-06-08T19:14:51Z</modified_on>
+          <modified_by url="https://mingle.curvedms.org/api/v2/users/29.xml">
+            <name>Angie</name>
+            <login>angie</login>
+          </modified_by>
+          <created_by url="https://mingle.curvedms.org/api/v2/users/3.xml">
+            <name>Dale</name>
+            <login>dale</login>
+          </created_by>
+          <properties type="array">
+            <property type_description="Managed text list" hidden="false">
+              <name>Card Type</name>
+              <value>Development</value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Card Status</name>
+              <value>In Development</value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Module</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Product Priority</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Department Priority</name>
+              <value>Simple Fix</value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Development Priority</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Escalation Level</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Date" hidden="false">
+              <name>Reported Date</name>
+              <value type="date">2011-06-08</value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Release Reported</name>
+              <value>3.37</value>
+            </property>
+            <property type_description="Automatically generated from the team list" hidden="false">
+              <name>Requirements Person</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Automatically generated from the team list" hidden="false">
+              <name>Design Person</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Automatically generated from the team list" hidden="false">
+              <name>Developer</name>
+              <value url="https://mingle.curvedms.org/api/v2/users/29.xml">
+                <name>Angie</name>
+                <login>angie</login>
+              </value>
+            </property>
+            <property type_description="Any number" hidden="true">
+              <name>Developer Estimate</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Any text" hidden="false">
+              <name>Link to Estimate</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Database</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Automatically generated from the team list" hidden="false">
+              <name>QA Person</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Customer Service Expert</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Ticket Number</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Date" hidden="false">
+              <name>Deployed On</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Release Planned</name>
+              <value>Unassigned to Release</value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Fix Type</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Any text" hidden="false">
+              <name>Link to Wave</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Card" hidden="false">
+              <name>Master Card Number</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Any text" hidden="false">
+              <name>Master Ticket Number</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="true">
+              <name>Requires Tech Review</name>
+              <value>No</value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>SRED Assessment</name>
+              <value>No</value>
+            </property>
+            <property type_description="Any text" hidden="false">
+              <name>SRED Doc</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Change to Conversions Script?</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Data Fix Type</name>
+              <value nil="true"></value>
+            </property>
+          </properties>
+          <tags>
+          </tags>
+        </card>
+        <card>
+          <name>7166 branch test - Patient amount can be negative with 2 insurance policies</name>
+          <description>*Steps to reproduce:*
+      # Make sure patient has 2 active insurance policies (the % coverage of each policy should be at least 50%, so that patient amount will return 0)
+      # Create and finalize an invoice with 2 line items (these procedures must be under insurance coverage)
+      # Open the invoice, if the Patient portion is not 0, set it to 0 for all line items
+      # Create a payment from the *secondary insurance*, in which includes:
+      * First line item: payment amount is &gt; the total estimation of *primary insurance*
+      * Second line item: pay full cost (as is)
+      
+      
+      *Expected Results:* Estimate total for *primary insurance* should be updated correctly for first line item 
+      
+      *Actual Results:* Patient portion has a negative amount
+      
+      !Negative_Patient_amount.png!</description>
+          <card_type url="https://mingle.curvedms.org/api/v2/projects/curve_hero/card_types/32.xml">
+            <name>Hero Card</name>
+          </card_type>
+          <id type="integer">12531</id>
+          <number type="integer">9929</number>
+          <project url="https://mingle.curvedms.org/api/v2/projects/curve_hero.xml">
+            <name>Curve Hero</name>
+            <identifier>curve_hero</identifier>
+          </project>
+          <version type="integer">4</version>
+          <project_card_rank type="integer">5831</project_card_rank>
+          <created_on type="datetime">2011-06-07T21:32:48Z</created_on>
+          <modified_on type="datetime">2011-06-07T22:34:31Z</modified_on>
+          <modified_by url="https://mingle.curvedms.org/api/v2/users/22.xml">
+            <name>Anh</name>
+            <login>anh</login>
+          </modified_by>
+          <created_by url="https://mingle.curvedms.org/api/v2/users/22.xml">
+            <name>Anh</name>
+            <login>anh</login>
+          </created_by>
+          <properties type="array">
+            <property type_description="Managed text list" hidden="false">
+              <name>Card Type</name>
+              <value>QA</value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Card Status</name>
+              <value>Back From QA</value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Module</name>
+              <value>Allocation</value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Product Priority</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Department Priority</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Development Priority</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Escalation Level</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Date" hidden="false">
+              <name>Reported Date</name>
+              <value type="date">2011-06-07</value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Release Reported</name>
+              <value>3.37</value>
+            </property>
+            <property type_description="Automatically generated from the team list" hidden="false">
+              <name>Requirements Person</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Automatically generated from the team list" hidden="false">
+              <name>Design Person</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Automatically generated from the team list" hidden="false">
+              <name>Developer</name>
+              <value url="https://mingle.curvedms.org/api/v2/users/5.xml">
+                <name>Joel</name>
+                <login>joel</login>
+              </value>
+            </property>
+            <property type_description="Any number" hidden="true">
+              <name>Developer Estimate</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Any text" hidden="false">
+              <name>Link to Estimate</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Database</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Automatically generated from the team list" hidden="false">
+              <name>QA Person</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Customer Service Expert</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Ticket Number</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Date" hidden="false">
+              <name>Deployed On</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Release Planned</name>
+              <value>3.37</value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Fix Type</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Any text" hidden="false">
+              <name>Link to Wave</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Card" hidden="false">
+              <name>Master Card Number</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Any text" hidden="false">
+              <name>Master Ticket Number</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="true">
+              <name>Requires Tech Review</name>
+              <value>No</value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>SRED Assessment</name>
+              <value>No</value>
+            </property>
+            <property type_description="Any text" hidden="false">
+              <name>SRED Doc</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Change to Conversions Script?</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Data Fix Type</name>
+              <value nil="true"></value>
+            </property>
+          </properties>
+          <tags>
+          </tags>
+        </card>
+        <card>
+          <name>7166 branch test - HTTP 500 error, unable to print tax receipt</name>
+          <description>Description - Sever error displayed in browser when user attempts to print tax receipt. 
+      
+      Steps to reproduce:
+      
+      1. Log into CA or US '7166_after_rebase' instances.
+      2. Print tax receipt in billing module. 
+      
+      Expected behavior: Tax receipt is rendered in a new browser window.
+      Actual beahvior: Server error message displayed in new browser window.</description>
+          <card_type url="https://mingle.curvedms.org/api/v2/projects/curve_hero/card_types/32.xml">
+            <name>Hero Card</name>
+          </card_type>
+          <id type="integer">12530</id>
+          <number type="integer">9928</number>
+          <project url="https://mingle.curvedms.org/api/v2/projects/curve_hero.xml">
+            <name>Curve Hero</name>
+            <identifier>curve_hero</identifier>
+          </project>
+          <version type="integer">4</version>
+          <project_card_rank type="integer">5830</project_card_rank>
+          <created_on type="datetime">2011-06-07T20:52:09Z</created_on>
+          <modified_on type="datetime">2011-06-08T13:31:30Z</modified_on>
+          <modified_by url="https://mingle.curvedms.org/api/v2/users/6.xml">
+            <name>Megan</name>
+            <login>megan</login>
+          </modified_by>
+          <created_by url="https://mingle.curvedms.org/api/v2/users/27.xml">
+            <name>Chris</name>
+            <login>chris</login>
+          </created_by>
+          <properties type="array">
+            <property type_description="Managed text list" hidden="false">
+              <name>Card Type</name>
+              <value>QA</value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Card Status</name>
+              <value>Back From QA</value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Module</name>
+              <value>Billing</value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Product Priority</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Department Priority</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Development Priority</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Escalation Level</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Date" hidden="false">
+              <name>Reported Date</name>
+              <value type="date">2011-06-07</value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Release Reported</name>
+              <value>3.37</value>
+            </property>
+            <property type_description="Automatically generated from the team list" hidden="false">
+              <name>Requirements Person</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Automatically generated from the team list" hidden="false">
+              <name>Design Person</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Automatically generated from the team list" hidden="false">
+              <name>Developer</name>
+              <value url="https://mingle.curvedms.org/api/v2/users/5.xml">
+                <name>Joel</name>
+                <login>joel</login>
+              </value>
+            </property>
+            <property type_description="Any number" hidden="true">
+              <name>Developer Estimate</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Any text" hidden="false">
+              <name>Link to Estimate</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Database</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Automatically generated from the team list" hidden="false">
+              <name>QA Person</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Customer Service Expert</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Ticket Number</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Date" hidden="false">
+              <name>Deployed On</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Release Planned</name>
+              <value>3.37</value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Fix Type</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Any text" hidden="false">
+              <name>Link to Wave</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Card" hidden="false">
+              <name>Master Card Number</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Any text" hidden="false">
+              <name>Master Ticket Number</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="true">
+              <name>Requires Tech Review</name>
+              <value>No</value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>SRED Assessment</name>
+              <value>No</value>
+            </property>
+            <property type_description="Any text" hidden="false">
+              <name>SRED Doc</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Change to Conversions Script?</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Data Fix Type</name>
+              <value nil="true"></value>
+            </property>
+          </properties>
+          <tags>
+          </tags>
+        </card>
+        <card>
+          <name>7166 branch test - Toaster errors when adding or removing line items in charting, no line item added to visit when applying treatment to tooth in charting diagram..</name>
+          <description>%{color:red}Note from QA: Also unable to drag visit in treatment plan to completed.%
+      
+      Description: 1. When adding or removing a line item from charting a toaster error message 'Error calling method on NPObject' is displayed.  2. When adding a line item in the treatment plan and selecting a tooth the tooth image in chart is not updated with the treatment. 3. When adding treatments by clicking on teeth the first treatment appears as a line item in the treatment plan but following ones do not.  
+      
+      Steps to reproduce:
+      
+      1. Log into US or CA '7166_after_rebasing' instance. &lt;br&gt;
+      2. Navigate to charting. &lt;br&gt; 
+      3. Click on 'New Line Item' and add a line item. &lt;br&gt;
+      4. Click on 'x' next to line item added in step 3 to remove the line item from visit. &lt;br&gt; 
+      5. Select a treatment from the selector sentence at top of charting window, click on tooth to apply treatment, repeat same treatment across multiple teeth&lt;br&gt; 
+      6. Remove multiple line items in treatment plan by clicking on 'x' next to line item description. &lt;br&gt;
+      
+      Expected behavior: User is able to add and remove valid line items without seeing error messages. Charting graphics will update with the treatment applied to a tooth after it is applied as a item in a visit. Line item will be added to visit when the user applies a treatment to a tooth.</description>
+          <card_type url="https://mingle.curvedms.org/api/v2/projects/curve_hero/card_types/32.xml">
+            <name>Hero Card</name>
+          </card_type>
+          <id type="integer">12529</id>
+          <number type="integer">9927</number>
+          <project url="https://mingle.curvedms.org/api/v2/projects/curve_hero.xml">
+            <name>Curve Hero</name>
+            <identifier>curve_hero</identifier>
+          </project>
+          <version type="integer">10</version>
+          <project_card_rank type="integer">5829</project_card_rank>
+          <created_on type="datetime">2011-06-07T17:39:43Z</created_on>
+          <modified_on type="datetime">2011-06-08T18:40:42Z</modified_on>
+          <modified_by url="https://mingle.curvedms.org/api/v2/users/27.xml">
+            <name>Chris</name>
+            <login>chris</login>
+          </modified_by>
+          <created_by url="https://mingle.curvedms.org/api/v2/users/27.xml">
+            <name>Chris</name>
+            <login>chris</login>
+          </created_by>
+          <properties type="array">
+            <property type_description="Managed text list" hidden="false">
+              <name>Card Type</name>
+              <value>QA</value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Card Status</name>
+              <value>Back From QA</value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Module</name>
+              <value>Charting</value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Product Priority</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Department Priority</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Development Priority</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Escalation Level</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Date" hidden="false">
+              <name>Reported Date</name>
+              <value type="date">2011-06-07</value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Release Reported</name>
+              <value>3.37</value>
+            </property>
+            <property type_description="Automatically generated from the team list" hidden="false">
+              <name>Requirements Person</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Automatically generated from the team list" hidden="false">
+              <name>Design Person</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Automatically generated from the team list" hidden="false">
+              <name>Developer</name>
+              <value url="https://mingle.curvedms.org/api/v2/users/5.xml">
+                <name>Joel</name>
+                <login>joel</login>
+              </value>
+            </property>
+            <property type_description="Any number" hidden="true">
+              <name>Developer Estimate</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Any text" hidden="false">
+              <name>Link to Estimate</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Database</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Automatically generated from the team list" hidden="false">
+              <name>QA Person</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Customer Service Expert</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Ticket Number</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Date" hidden="false">
+              <name>Deployed On</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Release Planned</name>
+              <value>3.37</value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Fix Type</name>
+              <value>No Fix Required</value>
+            </property>
+            <property type_description="Any text" hidden="false">
+              <name>Link to Wave</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Card" hidden="false">
+              <name>Master Card Number</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Any text" hidden="false">
+              <name>Master Ticket Number</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="true">
+              <name>Requires Tech Review</name>
+              <value>No</value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>SRED Assessment</name>
+              <value>No</value>
+            </property>
+            <property type_description="Any text" hidden="false">
+              <name>SRED Doc</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Change to Conversions Script?</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Data Fix Type</name>
+              <value nil="true"></value>
+            </property>
+          </properties>
+          <tags>
+          </tags>
+        </card>
+        <card>
+          <name>can't void invoice refund</name>
+          <description>the patient affected by this is Robert Martino.
+      
+      there is an invoice refund which cannot be deleted due to lock dates (the error is not obvious). this refund is showing up in our allocation data inconsistency check.
+      
+      this is not bad data, AND it is balanced out by a payment of equal value which also cannot be voided.</description>
+          <card_type url="https://mingle.curvedms.org/api/v2/projects/curve_hero/card_types/32.xml">
+            <name>Hero Card</name>
+          </card_type>
+          <id type="integer">12528</id>
+          <number type="integer">9926</number>
+          <project url="https://mingle.curvedms.org/api/v2/projects/curve_hero.xml">
+            <name>Curve Hero</name>
+            <identifier>curve_hero</identifier>
+          </project>
+          <version type="integer">3</version>
+          <project_card_rank type="integer">5828</project_card_rank>
+          <created_on type="datetime">2011-06-07T17:13:08Z</created_on>
+          <modified_on type="datetime">2011-06-07T18:09:52Z</modified_on>
+          <modified_by url="https://mingle.curvedms.org/api/v2/users/5.xml">
+            <name>Joel</name>
+            <login>joel</login>
+          </modified_by>
+          <created_by url="https://mingle.curvedms.org/api/v2/users/5.xml">
+            <name>Joel</name>
+            <login>joel</login>
+          </created_by>
+          <properties type="array">
+            <property type_description="Managed text list" hidden="false">
+              <name>Card Type</name>
+              <value>QA</value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Card Status</name>
+              <value>Discarded/Duplicate</value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Module</name>
+              <value>Billing</value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Product Priority</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Department Priority</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Development Priority</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Escalation Level</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Date" hidden="false">
+              <name>Reported Date</name>
+              <value type="date">2011-06-07</value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Release Reported</name>
+              <value>3.37</value>
+            </property>
+            <property type_description="Automatically generated from the team list" hidden="false">
+              <name>Requirements Person</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Automatically generated from the team list" hidden="false">
+              <name>Design Person</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Automatically generated from the team list" hidden="false">
+              <name>Developer</name>
+              <value url="https://mingle.curvedms.org/api/v2/users/5.xml">
+                <name>Joel</name>
+                <login>joel</login>
+              </value>
+            </property>
+            <property type_description="Any number" hidden="true">
+              <name>Developer Estimate</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Any text" hidden="false">
+              <name>Link to Estimate</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Database</name>
+              <value>longenecker</value>
+            </property>
+            <property type_description="Automatically generated from the team list" hidden="false">
+              <name>QA Person</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Customer Service Expert</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Ticket Number</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Date" hidden="false">
+              <name>Deployed On</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Release Planned</name>
+              <value>Unassigned to Release</value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Fix Type</name>
+              <value>Data</value>
+            </property>
+            <property type_description="Any text" hidden="false">
+              <name>Link to Wave</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Card" hidden="false">
+              <name>Master Card Number</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Any text" hidden="false">
+              <name>Master Ticket Number</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="true">
+              <name>Requires Tech Review</name>
+              <value>No</value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>SRED Assessment</name>
+              <value>No</value>
+            </property>
+            <property type_description="Any text" hidden="false">
+              <name>SRED Doc</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Change to Conversions Script?</name>
+              <value>No</value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Data Fix Type</name>
+              <value nil="true"></value>
+            </property>
+          </properties>
+          <tags>
+          </tags>
+        </card>
+        <card>
+          <name>Second Version of Statement Redesign</name>
+          <description>*Business Analyst:* Megan/Jim     
+      
+      *Lead Designer:* Stacy    
+      
+      *Developers:* Mike    
+      
+      *Balance of Values:* Garage
+      
+      *Estimated Budget:* 1 Week
+           
+      h1. Requirements:     
+      
+      * The details grid must use as must of the main part of the page as possible.
+      ** Move the practice name, phone, fax, email, and website into the footer of the statement.
+      ** Move the Last Statement Sent and Last Payment into the footer.
+      ** Remove the Account Name from above the details grid.
+      ** Move the Statement Date into the footer of the statement.
+      *Attach related bubbles to use more whitespace on the Statement.
+           
+      h1. Note:</description>
+          <card_type url="https://mingle.curvedms.org/api/v2/projects/curve_hero/card_types/32.xml">
+            <name>Hero Card</name>
+          </card_type>
+          <id type="integer">12527</id>
+          <number type="integer">9925</number>
+          <project url="https://mingle.curvedms.org/api/v2/projects/curve_hero.xml">
+            <name>Curve Hero</name>
+            <identifier>curve_hero</identifier>
+          </project>
+          <version type="integer">3</version>
+          <project_card_rank type="integer">5827</project_card_rank>
+          <created_on type="datetime">2011-06-07T16:32:54Z</created_on>
+          <modified_on type="datetime">2011-06-08T14:34:37Z</modified_on>
+          <modified_by url="https://mingle.curvedms.org/api/v2/users/6.xml">
+            <name>Megan</name>
+            <login>megan</login>
+          </modified_by>
+          <created_by url="https://mingle.curvedms.org/api/v2/users/6.xml">
+            <name>Megan</name>
+            <login>megan</login>
+          </created_by>
+          <properties type="array">
+            <property type_description="Managed text list" hidden="false">
+              <name>Card Type</name>
+              <value>QA</value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Card Status</name>
+              <value>Ready for Design</value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Module</name>
+              <value>Statements</value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Product Priority</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Department Priority</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Development Priority</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Escalation Level</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Date" hidden="false">
+              <name>Reported Date</name>
+              <value type="date">2011-06-07</value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Release Reported</name>
+              <value>3.37</value>
+            </property>
+            <property type_description="Automatically generated from the team list" hidden="false">
+              <name>Requirements Person</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Automatically generated from the team list" hidden="false">
+              <name>Design Person</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Automatically generated from the team list" hidden="false">
+              <name>Developer</name>
+              <value url="https://mingle.curvedms.org/api/v2/users/19.xml">
+                <name>Mike</name>
+                <login>mike</login>
+              </value>
+            </property>
+            <property type_description="Any number" hidden="true">
+              <name>Developer Estimate</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Any text" hidden="false">
+              <name>Link to Estimate</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Database</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Automatically generated from the team list" hidden="false">
+              <name>QA Person</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Customer Service Expert</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Ticket Number</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Date" hidden="false">
+              <name>Deployed On</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Release Planned</name>
+              <value>Unassigned to Release</value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Fix Type</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Any text" hidden="false">
+              <name>Link to Wave</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Card" hidden="false">
+              <name>Master Card Number</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Any text" hidden="false">
+              <name>Master Ticket Number</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="true">
+              <name>Requires Tech Review</name>
+              <value>No</value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>SRED Assessment</name>
+              <value>No</value>
+            </property>
+            <property type_description="Any text" hidden="false">
+              <name>SRED Doc</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Change to Conversions Script?</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Data Fix Type</name>
+              <value nil="true"></value>
+            </property>
+          </properties>
+          <tags>
+          </tags>
+        </card>
+        <card>
+          <name>Add NEA to Billing Tool for Corey</name>
+          <description>*Requirements:*
+      * The Billing Tool for Corey must have a column that indicates if the NEA bridge is applied to the database.
+      * This fix would be completed by June 20th so that Corey can have it available the next time he preps monthly billings.</description>
+          <card_type url="https://mingle.curvedms.org/api/v2/projects/curve_hero/card_types/32.xml">
+            <name>Hero Card</name>
+          </card_type>
+          <id type="integer">12526</id>
+          <number type="integer">9924</number>
+          <project url="https://mingle.curvedms.org/api/v2/projects/curve_hero.xml">
+            <name>Curve Hero</name>
+            <identifier>curve_hero</identifier>
+          </project>
+          <version type="integer">6</version>
+          <project_card_rank type="integer">5826</project_card_rank>
+          <created_on type="datetime">2011-06-07T16:10:51Z</created_on>
+          <modified_on type="datetime">2011-06-07T17:32:55Z</modified_on>
+          <modified_by url="https://mingle.curvedms.org/api/v2/users/6.xml">
+            <name>Megan</name>
+            <login>megan</login>
+          </modified_by>
+          <created_by url="https://mingle.curvedms.org/api/v2/users/6.xml">
+            <name>Megan</name>
+            <login>megan</login>
+          </created_by>
+          <properties type="array">
+            <property type_description="Managed text list" hidden="false">
+              <name>Card Type</name>
+              <value>Suggestion</value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Card Status</name>
+              <value>Ready for Development</value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Module</name>
+              <value>Misc</value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Product Priority</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Department Priority</name>
+              <value>Simple Fix</value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Development Priority</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Escalation Level</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Date" hidden="false">
+              <name>Reported Date</name>
+              <value type="date">2011-06-07</value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Release Reported</name>
+              <value>3.37</value>
+            </property>
+            <property type_description="Automatically generated from the team list" hidden="false">
+              <name>Requirements Person</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Automatically generated from the team list" hidden="false">
+              <name>Design Person</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Automatically generated from the team list" hidden="false">
+              <name>Developer</name>
+              <value url="https://mingle.curvedms.org/api/v2/users/12.xml">
+                <name>Shaun</name>
+                <login>shaun</login>
+              </value>
+            </property>
+            <property type_description="Any number" hidden="true">
+              <name>Developer Estimate</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Any text" hidden="false">
+              <name>Link to Estimate</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Database</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Automatically generated from the team list" hidden="false">
+              <name>QA Person</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Customer Service Expert</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Ticket Number</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Date" hidden="false">
+              <name>Deployed On</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Release Planned</name>
+              <value>Unassigned to Release</value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Fix Type</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Any text" hidden="false">
+              <name>Link to Wave</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Card" hidden="false">
+              <name>Master Card Number</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Any text" hidden="false">
+              <name>Master Ticket Number</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="true">
+              <name>Requires Tech Review</name>
+              <value>No</value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>SRED Assessment</name>
+              <value>No</value>
+            </property>
+            <property type_description="Any text" hidden="false">
+              <name>SRED Doc</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Change to Conversions Script?</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Data Fix Type</name>
+              <value nil="true"></value>
+            </property>
+          </properties>
+          <tags>
+          </tags>
+        </card>
+        <card>
+          <name>Data issue on Cadillac</name>
+          <description>This is an issue which occurred because an overpayment was voided twice. This is currently possible in our application, if two ledgers are open at the same time. We do not check if an overpayment is already voided before attempting to void it again. This could be an issue with other types of transactions, as well.
+      
+      In this particular instance, on the surface, the ledger doesn't look out of place, however, this issue is likely throwing off reports.
+      
+      The patient, Margaret Hocking, is inactive, so she will need to be accessed through the inactive patient report.
+      
+      This will require a data fix. The invoice in question is Invoice 950. The actual fix will require deleting a bunch of corrections and other extra transactions that were created by the user in an attempt to fix a strange looking invoice. 
+      
+      For testing purposes, we just want to make sure that the ledger still looks correct after the fix has been applied, and that there are only the bare minimum of associated transactions (3 payments and an overpayment. with no extra corrections on the invoice). 
+      
+      This can be tested on the following instances: *cadillac_9923_before* and *cadillac_9923_after*.</description>
+          <card_type url="https://mingle.curvedms.org/api/v2/projects/curve_hero/card_types/32.xml">
+            <name>Hero Card</name>
+          </card_type>
+          <id type="integer">12525</id>
+          <number type="integer">9923</number>
+          <project url="https://mingle.curvedms.org/api/v2/projects/curve_hero.xml">
+            <name>Curve Hero</name>
+            <identifier>curve_hero</identifier>
+          </project>
+          <version type="integer">10</version>
+          <project_card_rank type="integer">5825</project_card_rank>
+          <created_on type="datetime">2011-06-07T15:49:24Z</created_on>
+          <modified_on type="datetime">2011-06-08T17:56:09Z</modified_on>
+          <modified_by url="https://mingle.curvedms.org/api/v2/users/6.xml">
+            <name>Megan</name>
+            <login>megan</login>
+          </modified_by>
+          <created_by url="https://mingle.curvedms.org/api/v2/users/5.xml">
+            <name>Joel</name>
+            <login>joel</login>
+          </created_by>
+          <properties type="array">
+            <property type_description="Managed text list" hidden="false">
+              <name>Card Type</name>
+              <value>QA</value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Card Status</name>
+              <value>Ready to be Deployed</value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Module</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Product Priority</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Department Priority</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Development Priority</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Escalation Level</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Date" hidden="false">
+              <name>Reported Date</name>
+              <value type="date">2011-06-07</value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Release Reported</name>
+              <value>3.37</value>
+            </property>
+            <property type_description="Automatically generated from the team list" hidden="false">
+              <name>Requirements Person</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Automatically generated from the team list" hidden="false">
+              <name>Design Person</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Automatically generated from the team list" hidden="false">
+              <name>Developer</name>
+              <value url="https://mingle.curvedms.org/api/v2/users/5.xml">
+                <name>Joel</name>
+                <login>joel</login>
+              </value>
+            </property>
+            <property type_description="Any number" hidden="true">
+              <name>Developer Estimate</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Any text" hidden="false">
+              <name>Link to Estimate</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Database</name>
+              <value>cadillac</value>
+            </property>
+            <property type_description="Automatically generated from the team list" hidden="false">
+              <name>QA Person</name>
+              <value url="https://mingle.curvedms.org/api/v2/users/27.xml">
+                <name>Chris</name>
+                <login>chris</login>
+              </value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Customer Service Expert</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Ticket Number</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Date" hidden="false">
+              <name>Deployed On</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Release Planned</name>
+              <value>3.36</value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Fix Type</name>
+              <value>Data</value>
+            </property>
+            <property type_description="Any text" hidden="false">
+              <name>Link to Wave</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Card" hidden="false">
+              <name>Master Card Number</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Any text" hidden="false">
+              <name>Master Ticket Number</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="true">
+              <name>Requires Tech Review</name>
+              <value>No</value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>SRED Assessment</name>
+              <value>No</value>
+            </property>
+            <property type_description="Any text" hidden="false">
+              <name>SRED Doc</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Change to Conversions Script?</name>
+              <value>No</value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Data Fix Type</name>
+              <value>Live</value>
+            </property>
+          </properties>
+          <tags>Data Fixes for 7166</tags>
+        </card>
+        <card>
+          <name>Allocation widget - 'Estimate Saved' toaster message displayed when user performs an invalid invoice update that results in no changes</name>
+          <description>Description: If the user enters an amount in the 'Patient' column that when summed with the 'Insurance' column is greater than the total of a line item, they see a toaster message saying 'Estimate Saved'. User should not see this as this scenario is invalid and no changes are applied in invoicing.
+      
+      
+      Steps to reproduce:
+      
+      1. Open an invoice and adjust the 'Patient' payment on a line item so that when combined with the 'Insurance' value it is greater than the current total.
+      
+      Expected behavior: Either the user is presented with a toaster message saying this action cannot be performed or no toaster message displayed.
+      &lt;br&gt;
+      Actual behavior: Toaster message 'Estimate Saved' is displayed.</description>
+          <card_type url="https://mingle.curvedms.org/api/v2/projects/curve_hero/card_types/32.xml">
+            <name>Hero Card</name>
+          </card_type>
+          <id type="integer">12524</id>
+          <number type="integer">9922</number>
+          <project url="https://mingle.curvedms.org/api/v2/projects/curve_hero.xml">
+            <name>Curve Hero</name>
+            <identifier>curve_hero</identifier>
+          </project>
+          <version type="integer">6</version>
+          <project_card_rank type="integer">5824</project_card_rank>
+          <created_on type="datetime">2011-06-06T22:28:04Z</created_on>
+          <modified_on type="datetime">2011-06-07T16:09:07Z</modified_on>
+          <modified_by url="https://mingle.curvedms.org/api/v2/users/27.xml">
+            <name>Chris</name>
+            <login>chris</login>
+          </modified_by>
+          <created_by url="https://mingle.curvedms.org/api/v2/users/27.xml">
+            <name>Chris</name>
+            <login>chris</login>
+          </created_by>
+          <properties type="array">
+            <property type_description="Managed text list" hidden="false">
+              <name>Card Type</name>
+              <value>QA</value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Card Status</name>
+              <value>Discarded/Duplicate</value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Module</name>
+              <value>Allocation</value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Product Priority</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Department Priority</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Development Priority</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Escalation Level</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Date" hidden="false">
+              <name>Reported Date</name>
+              <value type="date">2011-06-06</value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Release Reported</name>
+              <value>3.37</value>
+            </property>
+            <property type_description="Automatically generated from the team list" hidden="false">
+              <name>Requirements Person</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Automatically generated from the team list" hidden="false">
+              <name>Design Person</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Automatically generated from the team list" hidden="false">
+              <name>Developer</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Any number" hidden="true">
+              <name>Developer Estimate</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Any text" hidden="false">
+              <name>Link to Estimate</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Database</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Automatically generated from the team list" hidden="false">
+              <name>QA Person</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Customer Service Expert</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Ticket Number</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Date" hidden="false">
+              <name>Deployed On</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Release Planned</name>
+              <value>3.37</value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Fix Type</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Any text" hidden="false">
+              <name>Link to Wave</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Card" hidden="false">
+              <name>Master Card Number</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Any text" hidden="false">
+              <name>Master Ticket Number</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="true">
+              <name>Requires Tech Review</name>
+              <value>No</value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>SRED Assessment</name>
+              <value>No</value>
+            </property>
+            <property type_description="Any text" hidden="false">
+              <name>SRED Doc</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Change to Conversions Script?</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Data Fix Type</name>
+              <value nil="true"></value>
+            </property>
+          </properties>
+          <tags>
+          </tags>
+        </card>
+        <card>
+          <name>7166 branch test - Total Estimation edit issue</name>
+          <description>*Steps to reproduce:*
+      # Access invoice allocation widget by clicking Insurance amount
+      # Click Total Estimate amount to edit it
+      # Enter a number A, eg. 10
+      
+      *Expected Results:* 10 should stays as Total Estimate amount and the allocation will be performed in the last 2 columns
+      
+      *Actual Results:* 10 doesn't stay, instead Total Estimate displays as sum of 10 and the Paid column</description>
+          <card_type url="https://mingle.curvedms.org/api/v2/projects/curve_hero/card_types/32.xml">
+            <name>Hero Card</name>
+          </card_type>
+          <id type="integer">12523</id>
+          <number type="integer">9921</number>
+          <project url="https://mingle.curvedms.org/api/v2/projects/curve_hero.xml">
+            <name>Curve Hero</name>
+            <identifier>curve_hero</identifier>
+          </project>
+          <version type="integer">2</version>
+          <project_card_rank type="integer">5823</project_card_rank>
+          <created_on type="datetime">2011-06-06T22:22:38Z</created_on>
+          <modified_on type="datetime">2011-06-07T17:28:00Z</modified_on>
+          <modified_by url="https://mingle.curvedms.org/api/v2/users/27.xml">
+            <name>Chris</name>
+            <login>chris</login>
+          </modified_by>
+          <created_by url="https://mingle.curvedms.org/api/v2/users/22.xml">
+            <name>Anh</name>
+            <login>anh</login>
+          </created_by>
+          <properties type="array">
+            <property type_description="Managed text list" hidden="false">
+              <name>Card Type</name>
+              <value>QA</value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Card Status</name>
+              <value>Back From QA</value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Module</name>
+              <value>Allocation</value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Product Priority</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Department Priority</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Development Priority</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Escalation Level</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Date" hidden="false">
+              <name>Reported Date</name>
+              <value type="date">2011-06-06</value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Release Reported</name>
+              <value>3.37</value>
+            </property>
+            <property type_description="Automatically generated from the team list" hidden="false">
+              <name>Requirements Person</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Automatically generated from the team list" hidden="false">
+              <name>Design Person</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Automatically generated from the team list" hidden="false">
+              <name>Developer</name>
+              <value url="https://mingle.curvedms.org/api/v2/users/5.xml">
+                <name>Joel</name>
+                <login>joel</login>
+              </value>
+            </property>
+            <property type_description="Any number" hidden="true">
+              <name>Developer Estimate</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Any text" hidden="false">
+              <name>Link to Estimate</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Database</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Automatically generated from the team list" hidden="false">
+              <name>QA Person</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Customer Service Expert</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Ticket Number</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Date" hidden="false">
+              <name>Deployed On</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Release Planned</name>
+              <value>3.37</value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Fix Type</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Any text" hidden="false">
+              <name>Link to Wave</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Card" hidden="false">
+              <name>Master Card Number</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Any text" hidden="false">
+              <name>Master Ticket Number</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="true">
+              <name>Requires Tech Review</name>
+              <value>No</value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>SRED Assessment</name>
+              <value>No</value>
+            </property>
+            <property type_description="Any text" hidden="false">
+              <name>SRED Doc</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Change to Conversions Script?</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Data Fix Type</name>
+              <value nil="true"></value>
+            </property>
+          </properties>
+          <tags>
+          </tags>
+        </card>
+        <card>
+          <name>7166 branch test - Allocation widget, values in allocation widget columns not aligned with column headers.</name>
+          <description>Description: The way the values in the allocation widget columns are formatted looks odd. Would be better if they were aligned with the column headers. 
+      
+      Steps to reproduce: 
+      
+      1. Log into US or CA staging instance. 
+      2. Open the allocation widget. 
+      3. Look at alignment of values displayed in allocation widget columns with the column headers.
+      
+      Expected behavior: Values align with column headers. 
+      Actual behavior: Columns look like they are set to 'right jusitfy', it looks odd.</description>
+          <card_type url="https://mingle.curvedms.org/api/v2/projects/curve_hero/card_types/32.xml">
+            <name>Hero Card</name>
+          </card_type>
+          <id type="integer">12522</id>
+          <number type="integer">9920</number>
+          <project url="https://mingle.curvedms.org/api/v2/projects/curve_hero.xml">
+            <name>Curve Hero</name>
+            <identifier>curve_hero</identifier>
+          </project>
+          <version type="integer">6</version>
+          <project_card_rank type="integer">5822</project_card_rank>
+          <created_on type="datetime">2011-06-06T21:24:08Z</created_on>
+          <modified_on type="datetime">2011-06-07T17:30:44Z</modified_on>
+          <modified_by url="https://mingle.curvedms.org/api/v2/users/6.xml">
+            <name>Megan</name>
+            <login>megan</login>
+          </modified_by>
+          <created_by url="https://mingle.curvedms.org/api/v2/users/27.xml">
+            <name>Chris</name>
+            <login>chris</login>
+          </created_by>
+          <properties type="array">
+            <property type_description="Managed text list" hidden="false">
+              <name>Card Type</name>
+              <value>QA</value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Card Status</name>
+              <value>Back From QA</value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Module</name>
+              <value>Allocation</value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Product Priority</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Department Priority</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Development Priority</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Escalation Level</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Date" hidden="false">
+              <name>Reported Date</name>
+              <value type="date">2011-06-06</value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Release Reported</name>
+              <value>3.37</value>
+            </property>
+            <property type_description="Automatically generated from the team list" hidden="false">
+              <name>Requirements Person</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Automatically generated from the team list" hidden="false">
+              <name>Design Person</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Automatically generated from the team list" hidden="false">
+              <name>Developer</name>
+              <value url="https://mingle.curvedms.org/api/v2/users/5.xml">
+                <name>Joel</name>
+                <login>joel</login>
+              </value>
+            </property>
+            <property type_description="Any number" hidden="true">
+              <name>Developer Estimate</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Any text" hidden="false">
+              <name>Link to Estimate</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Database</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Automatically generated from the team list" hidden="false">
+              <name>QA Person</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Customer Service Expert</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Ticket Number</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Date" hidden="false">
+              <name>Deployed On</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Release Planned</name>
+              <value>3.37</value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Fix Type</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Any text" hidden="false">
+              <name>Link to Wave</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Card" hidden="false">
+              <name>Master Card Number</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Any text" hidden="false">
+              <name>Master Ticket Number</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="true">
+              <name>Requires Tech Review</name>
+              <value>No</value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>SRED Assessment</name>
+              <value>No</value>
+            </property>
+            <property type_description="Any text" hidden="false">
+              <name>SRED Doc</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Change to Conversions Script?</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Data Fix Type</name>
+              <value nil="true"></value>
+            </property>
+          </properties>
+          <tags>
+          </tags>
+        </card>
+        <card>
+          <name>Production Credentials for NEA</name>
+          <description>We need to change the creditials for NEA to the new production ones.</description>
+          <card_type url="https://mingle.curvedms.org/api/v2/projects/curve_hero/card_types/32.xml">
+            <name>Hero Card</name>
+          </card_type>
+          <id type="integer">12521</id>
+          <number type="integer">9919</number>
+          <project url="https://mingle.curvedms.org/api/v2/projects/curve_hero.xml">
+            <name>Curve Hero</name>
+            <identifier>curve_hero</identifier>
+          </project>
+          <version type="integer">5</version>
+          <project_card_rank type="integer">5821</project_card_rank>
+          <created_on type="datetime">2011-06-06T16:28:23Z</created_on>
+          <modified_on type="datetime">2011-06-07T17:44:57Z</modified_on>
+          <modified_by url="https://mingle.curvedms.org/api/v2/users/6.xml">
+            <name>Megan</name>
+            <login>megan</login>
+          </modified_by>
+          <created_by url="https://mingle.curvedms.org/api/v2/users/6.xml">
+            <name>Megan</name>
+            <login>megan</login>
+          </created_by>
+          <properties type="array">
+            <property type_description="Managed text list" hidden="false">
+              <name>Card Type</name>
+              <value>QA</value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Card Status</name>
+              <value>Deployed(Live)</value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Module</name>
+              <value>Claims</value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Product Priority</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Department Priority</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Development Priority</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Escalation Level</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Date" hidden="false">
+              <name>Reported Date</name>
+              <value type="date">2011-06-06</value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Release Reported</name>
+              <value>3.37</value>
+            </property>
+            <property type_description="Automatically generated from the team list" hidden="false">
+              <name>Requirements Person</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Automatically generated from the team list" hidden="false">
+              <name>Design Person</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Automatically generated from the team list" hidden="false">
+              <name>Developer</name>
+              <value url="https://mingle.curvedms.org/api/v2/users/12.xml">
+                <name>Shaun</name>
+                <login>shaun</login>
+              </value>
+            </property>
+            <property type_description="Any number" hidden="true">
+              <name>Developer Estimate</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Any text" hidden="false">
+              <name>Link to Estimate</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Database</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Automatically generated from the team list" hidden="false">
+              <name>QA Person</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Customer Service Expert</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Ticket Number</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Date" hidden="false">
+              <name>Deployed On</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Release Planned</name>
+              <value>3.36</value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Fix Type</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Any text" hidden="false">
+              <name>Link to Wave</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Card" hidden="false">
+              <name>Master Card Number</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Any text" hidden="false">
+              <name>Master Ticket Number</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="true">
+              <name>Requires Tech Review</name>
+              <value>No</value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>SRED Assessment</name>
+              <value>No</value>
+            </property>
+            <property type_description="Any text" hidden="false">
+              <name>SRED Doc</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Change to Conversions Script?</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Data Fix Type</name>
+              <value nil="true"></value>
+            </property>
+          </properties>
+          <tags>
+          </tags>
+        </card>
+        <card>
+          <name>Message shown to users when system maintenance is being done needs to be time sensitive</name>
+          <description>Current message is show below. I did the release at 7.30pm this evening which is still a reasonable hour for dentists to be logging in. We need to be able to change the message so that if it is being shown, say, before 10pm, if is slightly different and acknowledges the fact that people might be logged on to the system, but that the maintenance is crucial and needs to be done now.
+      
+      This is related to, but not exactly the same as #9773
+      
+      
+      _Oh, hello._
+      
+      _Didn't mean to wake you. But now that you're up let us explain what we're doing. We're pretty much making your Curve world a better place to work. So, right now the system is being upgraded, which means when you log in for work in the morning you'll have some pretty cool new features available for immediate use. Plus, we've crossed off a few more items on our list of requests from customers just like you. Be sure to check out our blog to read up on what's new._
+      
+      _This upgrade shouldn't take long at all. By the time you wake up and get your first cup of coffee a better Curve world will be waiting for you. We don't really expect anyone to be reading this message at this hour; if you are reading this message maybe it's time to try counting sheep. Grandpa says that always works for him._
+      
+      _If you are trying to access your data at this time we apologize for the inconvenience. Please feel free to call us at 888-910-4376 and let us know what we could have done better to avoid this awkward moment. We're serious about seriously awesome customer service. Please call... when the sun's up._
+      
+      _
+      Best wishes! 
+      Curve Dental_</description>
+          <card_type url="https://mingle.curvedms.org/api/v2/projects/curve_hero/card_types/32.xml">
+            <name>Hero Card</name>
+          </card_type>
+          <id type="integer">12520</id>
+          <number type="integer">9918</number>
+          <project url="https://mingle.curvedms.org/api/v2/projects/curve_hero.xml">
+            <name>Curve Hero</name>
+            <identifier>curve_hero</identifier>
+          </project>
+          <version type="integer">1</version>
+          <project_card_rank type="integer">5820</project_card_rank>
+          <created_on type="datetime">2011-06-06T01:46:06Z</created_on>
+          <modified_on type="datetime">2011-06-06T01:46:06Z</modified_on>
+          <modified_by url="https://mingle.curvedms.org/api/v2/users/25.xml">
+            <name>Steven</name>
+            <login>steven</login>
+          </modified_by>
+          <created_by url="https://mingle.curvedms.org/api/v2/users/25.xml">
+            <name>Steven</name>
+            <login>steven</login>
+          </created_by>
+          <properties type="array">
+            <property type_description="Managed text list" hidden="false">
+              <name>Card Type</name>
+              <value>QA</value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Card Status</name>
+              <value>Reported</value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Module</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Product Priority</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Department Priority</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Development Priority</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Escalation Level</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Date" hidden="false">
+              <name>Reported Date</name>
+              <value type="date">2011-06-05</value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Release Reported</name>
+              <value>3.36</value>
+            </property>
+            <property type_description="Automatically generated from the team list" hidden="false">
+              <name>Requirements Person</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Automatically generated from the team list" hidden="false">
+              <name>Design Person</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Automatically generated from the team list" hidden="false">
+              <name>Developer</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Any number" hidden="true">
+              <name>Developer Estimate</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Any text" hidden="false">
+              <name>Link to Estimate</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Database</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Automatically generated from the team list" hidden="false">
+              <name>QA Person</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Customer Service Expert</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Ticket Number</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Date" hidden="false">
+              <name>Deployed On</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Release Planned</name>
+              <value>Unassigned to Release</value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Fix Type</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Any text" hidden="false">
+              <name>Link to Wave</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Card" hidden="false">
+              <name>Master Card Number</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Any text" hidden="false">
+              <name>Master Ticket Number</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="true">
+              <name>Requires Tech Review</name>
+              <value>No</value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>SRED Assessment</name>
+              <value>No</value>
+            </property>
+            <property type_description="Any text" hidden="false">
+              <name>SRED Doc</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Change to Conversions Script?</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Data Fix Type</name>
+              <value nil="true"></value>
+            </property>
+          </properties>
+          <tags>
+          </tags>
+        </card>
+        <card>
+          <name>(CA only) Cannot open claim context menu</name>
+          <description>Tested on CA staging
+      
+      *Steps to reproduce:*
+      # Access Claims module, right-click an existing claim
+      
+      *Expected Results:* Claim context menu displays with at least 1 option "Regenerate Manual Claim"
+      
+      *Actual Results:* Nothing displays, dev console has error
+      
+      !CAClaimContextMenu.png!</description>
+          <card_type url="https://mingle.curvedms.org/api/v2/projects/curve_hero/card_types/32.xml">
+            <name>Hero Card</name>
+          </card_type>
+          <id type="integer">12519</id>
+          <number type="integer">9917</number>
+          <project url="https://mingle.curvedms.org/api/v2/projects/curve_hero.xml">
+            <name>Curve Hero</name>
+            <identifier>curve_hero</identifier>
+          </project>
+          <version type="integer">7</version>
+          <project_card_rank type="integer">5819</project_card_rank>
+          <created_on type="datetime">2011-06-03T19:35:30Z</created_on>
+          <modified_on type="datetime">2011-06-06T05:30:16Z</modified_on>
+          <modified_by url="https://mingle.curvedms.org/api/v2/users/27.xml">
+            <name>Chris</name>
+            <login>chris</login>
+          </modified_by>
+          <created_by url="https://mingle.curvedms.org/api/v2/users/22.xml">
+            <name>Anh</name>
+            <login>anh</login>
+          </created_by>
+          <properties type="array">
+            <property type_description="Managed text list" hidden="false">
+              <name>Card Type</name>
+              <value>QA</value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Card Status</name>
+              <value>Deployed(Live)</value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Module</name>
+              <value>Claims</value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Product Priority</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Department Priority</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Development Priority</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Escalation Level</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Date" hidden="false">
+              <name>Reported Date</name>
+              <value type="date">2011-06-03</value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Release Reported</name>
+              <value>3.36</value>
+            </property>
+            <property type_description="Automatically generated from the team list" hidden="false">
+              <name>Requirements Person</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Automatically generated from the team list" hidden="false">
+              <name>Design Person</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Automatically generated from the team list" hidden="false">
+              <name>Developer</name>
+              <value url="https://mingle.curvedms.org/api/v2/users/12.xml">
+                <name>Shaun</name>
+                <login>shaun</login>
+              </value>
+            </property>
+            <property type_description="Any number" hidden="true">
+              <name>Developer Estimate</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Any text" hidden="false">
+              <name>Link to Estimate</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Database</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Automatically generated from the team list" hidden="false">
+              <name>QA Person</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Customer Service Expert</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Ticket Number</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Date" hidden="false">
+              <name>Deployed On</name>
+              <value type="date">2011-06-05</value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Release Planned</name>
+              <value>3.36</value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Fix Type</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Any text" hidden="false">
+              <name>Link to Wave</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Card" hidden="false">
+              <name>Master Card Number</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Any text" hidden="false">
+              <name>Master Ticket Number</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="true">
+              <name>Requires Tech Review</name>
+              <value>No</value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>SRED Assessment</name>
+              <value>No</value>
+            </property>
+            <property type_description="Any text" hidden="false">
+              <name>SRED Doc</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Change to Conversions Script?</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Data Fix Type</name>
+              <value nil="true"></value>
+            </property>
+          </properties>
+          <tags>
+          </tags>
+        </card>
+        <card>
+          <name>Should not be able to create an Invoice Refund with $0 total amount</name>
+          <description>*Steps to reproduce:*
+      # Go to billing, open a paid invoice
+      # Add invoice refund, notice the default is $0
+      # Finalize the invoice refund with default total $0
+      
+      *Expected Results:* The refund total should not be $0 in terms of usability
+      
+      *Actual Results:* Invoice refund is finalized ok with $0</description>
+          <card_type url="https://mingle.curvedms.org/api/v2/projects/curve_hero/card_types/32.xml">
+            <name>Hero Card</name>
+          </card_type>
+          <id type="integer">12518</id>
+          <number type="integer">9916</number>
+          <project url="https://mingle.curvedms.org/api/v2/projects/curve_hero.xml">
+            <name>Curve Hero</name>
+            <identifier>curve_hero</identifier>
+          </project>
+          <version type="integer">2</version>
+          <project_card_rank type="integer">5818</project_card_rank>
+          <created_on type="datetime">2011-06-03T17:12:14Z</created_on>
+          <modified_on type="datetime">2011-06-03T17:12:25Z</modified_on>
+          <modified_by url="https://mingle.curvedms.org/api/v2/users/22.xml">
+            <name>Anh</name>
+            <login>anh</login>
+          </modified_by>
+          <created_by url="https://mingle.curvedms.org/api/v2/users/22.xml">
+            <name>Anh</name>
+            <login>anh</login>
+          </created_by>
+          <properties type="array">
+            <property type_description="Managed text list" hidden="false">
+              <name>Card Type</name>
+              <value>QA</value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Card Status</name>
+              <value>Reported</value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Module</name>
+              <value>Billing</value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Product Priority</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Department Priority</name>
+              <value>Low</value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Development Priority</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Escalation Level</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Date" hidden="false">
+              <name>Reported Date</name>
+              <value type="date">2011-06-03</value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Release Reported</name>
+              <value>3.36</value>
+            </property>
+            <property type_description="Automatically generated from the team list" hidden="false">
+              <name>Requirements Person</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Automatically generated from the team list" hidden="false">
+              <name>Design Person</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Automatically generated from the team list" hidden="false">
+              <name>Developer</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Any number" hidden="true">
+              <name>Developer Estimate</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Any text" hidden="false">
+              <name>Link to Estimate</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Database</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Automatically generated from the team list" hidden="false">
+              <name>QA Person</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Customer Service Expert</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Ticket Number</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Date" hidden="false">
+              <name>Deployed On</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Release Planned</name>
+              <value>Unassigned to Release</value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Fix Type</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Any text" hidden="false">
+              <name>Link to Wave</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Card" hidden="false">
+              <name>Master Card Number</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Any text" hidden="false">
+              <name>Master Ticket Number</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="true">
+              <name>Requires Tech Review</name>
+              <value>No</value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>SRED Assessment</name>
+              <value>No</value>
+            </property>
+            <property type_description="Any text" hidden="false">
+              <name>SRED Doc</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Change to Conversions Script?</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Data Fix Type</name>
+              <value nil="true"></value>
+            </property>
+          </properties>
+          <tags>
+          </tags>
+        </card>
+        <card>
+          <name>Should not be able to create an Invoice Refund with future date</name>
+          <description>*Steps to reproduce:*
+      # Go to billing, open a paid invoice
+      # Add invoice refund, select a future date from today
+      # Fill in details and finalize the refund
+      
+      *Expected Results:* Should not allow future date for invoice refund
+      
+      *Actual Results:* Invoice refund is successfully created with the future date</description>
+          <card_type url="https://mingle.curvedms.org/api/v2/projects/curve_hero/card_types/32.xml">
+            <name>Hero Card</name>
+          </card_type>
+          <id type="integer">12517</id>
+          <number type="integer">9915</number>
+          <project url="https://mingle.curvedms.org/api/v2/projects/curve_hero.xml">
+            <name>Curve Hero</name>
+            <identifier>curve_hero</identifier>
+          </project>
+          <version type="integer">1</version>
+          <project_card_rank type="integer">5817</project_card_rank>
+          <created_on type="datetime">2011-06-03T17:04:27Z</created_on>
+          <modified_on type="datetime">2011-06-03T17:04:27Z</modified_on>
+          <modified_by url="https://mingle.curvedms.org/api/v2/users/22.xml">
+            <name>Anh</name>
+            <login>anh</login>
+          </modified_by>
+          <created_by url="https://mingle.curvedms.org/api/v2/users/22.xml">
+            <name>Anh</name>
+            <login>anh</login>
+          </created_by>
+          <properties type="array">
+            <property type_description="Managed text list" hidden="false">
+              <name>Card Type</name>
+              <value>QA</value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Card Status</name>
+              <value>Reported</value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Module</name>
+              <value>Billing</value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Product Priority</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Department Priority</name>
+              <value>Normal</value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Development Priority</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Escalation Level</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Date" hidden="false">
+              <name>Reported Date</name>
+              <value type="date">2011-06-03</value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Release Reported</name>
+              <value>3.36</value>
+            </property>
+            <property type_description="Automatically generated from the team list" hidden="false">
+              <name>Requirements Person</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Automatically generated from the team list" hidden="false">
+              <name>Design Person</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Automatically generated from the team list" hidden="false">
+              <name>Developer</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Any number" hidden="true">
+              <name>Developer Estimate</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Any text" hidden="false">
+              <name>Link to Estimate</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Database</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Automatically generated from the team list" hidden="false">
+              <name>QA Person</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Customer Service Expert</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Ticket Number</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Date" hidden="false">
+              <name>Deployed On</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Release Planned</name>
+              <value>Unassigned to Release</value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Fix Type</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Any text" hidden="false">
+              <name>Link to Wave</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Card" hidden="false">
+              <name>Master Card Number</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Any text" hidden="false">
+              <name>Master Ticket Number</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="true">
+              <name>Requires Tech Review</name>
+              <value>No</value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>SRED Assessment</name>
+              <value>No</value>
+            </property>
+            <property type_description="Any text" hidden="false">
+              <name>SRED Doc</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Change to Conversions Script?</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Data Fix Type</name>
+              <value nil="true"></value>
+            </property>
+          </properties>
+          <tags>
+          </tags>
+        </card>
+        <card>
+          <name>File Upload With Large Files</name>
+          <description>*Business Analyst:* Megan     
+      
+      *Lead Designer:* Stacy    
+      
+      *Developers:* TBD    
+      
+      *Balance of Values:* Garage     
+      
+      *Estimated Budget:* 1 Week
+      
+      %{color:orange}This is the 4th project for Beta.%
+           
+      h1. Mission:     
+      
+      * To allow users to upload files of any size
+      * To allow users to upload multiple files at the same time
+           
+      h1. Requirements:     
+      
+      * Users must be able to upload a file of any size.
+      ** If a size limit is reached by a large file, there must be a dialog to let the user know that this file is too large. 
+      * Users must be able to upload multiple files at the same time
+      ** Users must be able to browse to find files and drag and drop. Drag and drop is a bonus and doesn't need to be done for Beta if it is too much work.
+           
+      h1. Note:
+      
+      We will need to look into different ways of uploading large files. We should try and find out how other companies deal with large files (Facebook, Flikr, etc)
+      
+      There will not be any upfront Design work done on this project. We will need to figure out what we can do with uploading of multiple files, and then we can get a design.</description>
+          <card_type url="https://mingle.curvedms.org/api/v2/projects/curve_hero/card_types/32.xml">
+            <name>Hero Card</name>
+          </card_type>
+          <id type="integer">12516</id>
+          <number type="integer">9914</number>
+          <project url="https://mingle.curvedms.org/api/v2/projects/curve_hero.xml">
+            <name>Curve Hero</name>
+            <identifier>curve_hero</identifier>
+          </project>
+          <version type="integer">9</version>
+          <project_card_rank type="integer">5816</project_card_rank>
+          <created_on type="datetime">2011-06-03T15:39:42Z</created_on>
+          <modified_on type="datetime">2011-06-08T19:07:06Z</modified_on>
+          <modified_by url="https://mingle.curvedms.org/api/v2/users/6.xml">
+            <name>Megan</name>
+            <login>megan</login>
+          </modified_by>
+          <created_by url="https://mingle.curvedms.org/api/v2/users/6.xml">
+            <name>Megan</name>
+            <login>megan</login>
+          </created_by>
+          <properties type="array">
+            <property type_description="Managed text list" hidden="false">
+              <name>Card Type</name>
+              <value>QA</value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Card Status</name>
+              <value>Ready for Development</value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Module</name>
+              <value>Images</value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Product Priority</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Department Priority</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Development Priority</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Escalation Level</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Date" hidden="false">
+              <name>Reported Date</name>
+              <value type="date">2011-06-03</value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Release Reported</name>
+              <value>3.36</value>
+            </property>
+            <property type_description="Automatically generated from the team list" hidden="false">
+              <name>Requirements Person</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Automatically generated from the team list" hidden="false">
+              <name>Design Person</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Automatically generated from the team list" hidden="false">
+              <name>Developer</name>
+              <value url="https://mingle.curvedms.org/api/v2/users/5.xml">
+                <name>Joel</name>
+                <login>joel</login>
+              </value>
+            </property>
+            <property type_description="Any number" hidden="true">
+              <name>Developer Estimate</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Any text" hidden="false">
+              <name>Link to Estimate</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Database</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Automatically generated from the team list" hidden="false">
+              <name>QA Person</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Customer Service Expert</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Ticket Number</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Date" hidden="false">
+              <name>Deployed On</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Release Planned</name>
+              <value>Unassigned to Release</value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Fix Type</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Any text" hidden="false">
+              <name>Link to Wave</name>
+              <value>https://wave.google.com/a/curvedental.com/waveref/curvedental.com/w+FWaRqnprC</value>
+            </property>
+            <property type_description="Card" hidden="false">
+              <name>Master Card Number</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Any text" hidden="false">
+              <name>Master Ticket Number</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="true">
+              <name>Requires Tech Review</name>
+              <value>No</value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>SRED Assessment</name>
+              <value>No</value>
+            </property>
+            <property type_description="Any text" hidden="false">
+              <name>SRED Doc</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Change to Conversions Script?</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Data Fix Type</name>
+              <value nil="true"></value>
+            </property>
+          </properties>
+          <tags>
+          </tags>
+        </card>
+        <card>
+          <name>Photos - After uploading an image with no title user is not able to scroll through film strip.</name>
+          <description>Description: After a user uploads an image with no title they are no longer able to scroll through the film strip by clicking on forward / backward buttons.
+      
+      Steps to reproduce:
+      
+      1. Navigate to photos. 
+      2. Load enough images to fill the film strip. 
+      3. Upload an image with no image title. 
+      4. Click on forward / backward buttons to scroll the film strip.
+      
+      Expected behavior: User is able to scroll through filmstrip using forward / backward buttons. 
+      Actual behavior: User is unable to scroll through filmstrip using forward / backward buttons after uploading an image with no title.</description>
+          <card_type url="https://mingle.curvedms.org/api/v2/projects/curve_hero/card_types/32.xml">
+            <name>Hero Card</name>
+          </card_type>
+          <id type="integer">12515</id>
+          <number type="integer">9913</number>
+          <project url="https://mingle.curvedms.org/api/v2/projects/curve_hero.xml">
+            <name>Curve Hero</name>
+            <identifier>curve_hero</identifier>
+          </project>
+          <version type="integer">3</version>
+          <project_card_rank type="integer">5815</project_card_rank>
+          <created_on type="datetime">2011-06-02T22:35:03Z</created_on>
+          <modified_on type="datetime">2011-06-02T22:37:56Z</modified_on>
+          <modified_by url="https://mingle.curvedms.org/api/v2/users/27.xml">
+            <name>Chris</name>
+            <login>chris</login>
+          </modified_by>
+          <created_by url="https://mingle.curvedms.org/api/v2/users/27.xml">
+            <name>Chris</name>
+            <login>chris</login>
+          </created_by>
+          <properties type="array">
+            <property type_description="Managed text list" hidden="false">
+              <name>Card Type</name>
+              <value>QA</value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Card Status</name>
+              <value>Reported</value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Module</name>
+              <value>Images</value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Product Priority</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Department Priority</name>
+              <value>Normal</value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Development Priority</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Escalation Level</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Date" hidden="false">
+              <name>Reported Date</name>
+              <value type="date">2011-06-02</value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Release Reported</name>
+              <value>3.36</value>
+            </property>
+            <property type_description="Automatically generated from the team list" hidden="false">
+              <name>Requirements Person</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Automatically generated from the team list" hidden="false">
+              <name>Design Person</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Automatically generated from the team list" hidden="false">
+              <name>Developer</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Any number" hidden="true">
+              <name>Developer Estimate</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Any text" hidden="false">
+              <name>Link to Estimate</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Database</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Automatically generated from the team list" hidden="false">
+              <name>QA Person</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Customer Service Expert</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Ticket Number</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Date" hidden="false">
+              <name>Deployed On</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Release Planned</name>
+              <value>Unassigned to Release</value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Fix Type</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Any text" hidden="false">
+              <name>Link to Wave</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Card" hidden="false">
+              <name>Master Card Number</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Any text" hidden="false">
+              <name>Master Ticket Number</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="true">
+              <name>Requires Tech Review</name>
+              <value>No</value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>SRED Assessment</name>
+              <value>No</value>
+            </property>
+            <property type_description="Any text" hidden="false">
+              <name>SRED Doc</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Change to Conversions Script?</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Data Fix Type</name>
+              <value nil="true"></value>
+            </property>
+          </properties>
+          <tags>
+          </tags>
+        </card>
+        <card>
+          <name>Charting Mode tab: Active mode doesn't stay highlighted when double clicked</name>
+          <description>*Steps to reproduce:*
+      # Go to Charting, select History mode by clicking History in mode tab
+      # Click History again and mouse away
+      
+      *Expected Results:* %{color:blue}History% is still highlighted in blue indicating that this is the active mode
+      
+      *Actual Results:* No mode is highlight even though user is still in History mode
+      
+      !Mode.png!</description>
+          <card_type url="https://mingle.curvedms.org/api/v2/projects/curve_hero/card_types/32.xml">
+            <name>Hero Card</name>
+          </card_type>
+          <id type="integer">12514</id>
+          <number type="integer">9912</number>
+          <project url="https://mingle.curvedms.org/api/v2/projects/curve_hero.xml">
+            <name>Curve Hero</name>
+            <identifier>curve_hero</identifier>
+          </project>
+          <version type="integer">3</version>
+          <project_card_rank type="integer">5814</project_card_rank>
+          <created_on type="datetime">2011-06-02T22:12:19Z</created_on>
+          <modified_on type="datetime">2011-06-02T22:13:22Z</modified_on>
+          <modified_by url="https://mingle.curvedms.org/api/v2/users/22.xml">
+            <name>Anh</name>
+            <login>anh</login>
+          </modified_by>
+          <created_by url="https://mingle.curvedms.org/api/v2/users/22.xml">
+            <name>Anh</name>
+            <login>anh</login>
+          </created_by>
+          <properties type="array">
+            <property type_description="Managed text list" hidden="false">
+              <name>Card Type</name>
+              <value>QA</value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Card Status</name>
+              <value>Reported</value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Module</name>
+              <value>Charting</value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Product Priority</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Department Priority</name>
+              <value>Simple Fix</value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Development Priority</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Escalation Level</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Date" hidden="false">
+              <name>Reported Date</name>
+              <value type="date">2011-06-02</value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Release Reported</name>
+              <value>3.36</value>
+            </property>
+            <property type_description="Automatically generated from the team list" hidden="false">
+              <name>Requirements Person</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Automatically generated from the team list" hidden="false">
+              <name>Design Person</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Automatically generated from the team list" hidden="false">
+              <name>Developer</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Any number" hidden="true">
+              <name>Developer Estimate</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Any text" hidden="false">
+              <name>Link to Estimate</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Database</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Automatically generated from the team list" hidden="false">
+              <name>QA Person</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Customer Service Expert</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Ticket Number</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Date" hidden="false">
+              <name>Deployed On</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Release Planned</name>
+              <value>Unassigned to Release</value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Fix Type</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Any text" hidden="false">
+              <name>Link to Wave</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Card" hidden="false">
+              <name>Master Card Number</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Any text" hidden="false">
+              <name>Master Ticket Number</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="true">
+              <name>Requires Tech Review</name>
+              <value>No</value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>SRED Assessment</name>
+              <value>No</value>
+            </property>
+            <property type_description="Any text" hidden="false">
+              <name>SRED Doc</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Change to Conversions Script?</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Data Fix Type</name>
+              <value nil="true"></value>
+            </property>
+          </properties>
+          <tags>
+          </tags>
+        </card>
+        <card>
+          <name>Chart: time consuming to chart treatment</name>
+          <description>*Module:*
+      Charting
+      
+      *Feature Request:*
+      # Charting History should allow you to more easily change the treatment (sentence structure) as you move through the mouth.)
+      
+      *Description of Feature:*
+      # Office had no suggestions, so I'm thinking keyboard shortcuts, a la Perio Charting.
+      
+      *Clients:*
+      # pacficdental
+      
+      *The Why:*
+      # charting the current state of the mouth is hard because they have to go through and do all the restorations, then go through again for the next type of procedure, etc. instead of being able to move through the mouth once.
+      # Difficult for the patient as well, as this extends the time of the exam.</description>
+          <card_type url="https://mingle.curvedms.org/api/v2/projects/curve_hero/card_types/32.xml">
+            <name>Hero Card</name>
+          </card_type>
+          <id type="integer">12513</id>
+          <number type="integer">9911</number>
+          <project url="https://mingle.curvedms.org/api/v2/projects/curve_hero.xml">
+            <name>Curve Hero</name>
+            <identifier>curve_hero</identifier>
+          </project>
+          <version type="integer">4</version>
+          <project_card_rank type="integer">5813</project_card_rank>
+          <created_on type="datetime">2011-06-02T21:16:24Z</created_on>
+          <modified_on type="datetime">2011-06-06T15:18:35Z</modified_on>
+          <modified_by url="https://mingle.curvedms.org/api/v2/users/6.xml">
+            <name>Megan</name>
+            <login>megan</login>
+          </modified_by>
+          <created_by url="https://mingle.curvedms.org/api/v2/users/16.xml">
+            <name>Info</name>
+            <login>info</login>
+          </created_by>
+          <properties type="array">
+            <property type_description="Managed text list" hidden="false">
+              <name>Card Type</name>
+              <value>Suggestion</value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Card Status</name>
+              <value>Reported</value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Module</name>
+              <value>Charting</value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Product Priority</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Department Priority</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Development Priority</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Escalation Level</name>
+              <value>None</value>
+            </property>
+            <property type_description="Date" hidden="false">
+              <name>Reported Date</name>
+              <value type="date">2011-06-02</value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Release Reported</name>
+              <value>3.35</value>
+            </property>
+            <property type_description="Automatically generated from the team list" hidden="false">
+              <name>Requirements Person</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Automatically generated from the team list" hidden="false">
+              <name>Design Person</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Automatically generated from the team list" hidden="false">
+              <name>Developer</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Any number" hidden="true">
+              <name>Developer Estimate</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Any text" hidden="false">
+              <name>Link to Estimate</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Database</name>
+              <value>pacificdental</value>
+            </property>
+            <property type_description="Automatically generated from the team list" hidden="false">
+              <name>QA Person</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Customer Service Expert</name>
+              <value>Wayne Brickey</value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Ticket Number</name>
+              <value>TKT10307</value>
+            </property>
+            <property type_description="Date" hidden="false">
+              <name>Deployed On</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Release Planned</name>
+              <value>Unassigned to Release</value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Fix Type</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Any text" hidden="false">
+              <name>Link to Wave</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Card" hidden="false">
+              <name>Master Card Number</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Any text" hidden="false">
+              <name>Master Ticket Number</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="true">
+              <name>Requires Tech Review</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>SRED Assessment</name>
+              <value>No</value>
+            </property>
+            <property type_description="Any text" hidden="false">
+              <name>SRED Doc</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Change to Conversions Script?</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Data Fix Type</name>
+              <value nil="true"></value>
+            </property>
+          </properties>
+          <tags>
+          </tags>
+        </card>
+        <card>
+          <name>Unable to select quadrant by entering code</name>
+          <description>Description: User is unable to select a quadrant by typing in their codes. 
+      
+      Steps to reproduce:
+      
+      1. Navigate to charting.
+      2. Add a new line item that involves quadrants. 
+      3. Click on 'Site' to bring up quadrants diagram.
+      4. Enter code for quadrant. 
+      
+      Expected behavior: Quadrant highlighted when user enters its code. 
+      Actual behavior: No quadrant is highlighted when the user enters a code.</description>
+          <card_type url="https://mingle.curvedms.org/api/v2/projects/curve_hero/card_types/32.xml">
+            <name>Hero Card</name>
+          </card_type>
+          <id type="integer">12512</id>
+          <number type="integer">9910</number>
+          <project url="https://mingle.curvedms.org/api/v2/projects/curve_hero.xml">
+            <name>Curve Hero</name>
+            <identifier>curve_hero</identifier>
+          </project>
+          <version type="integer">1</version>
+          <project_card_rank type="integer">5812</project_card_rank>
+          <created_on type="datetime">2011-06-02T20:45:26Z</created_on>
+          <modified_on type="datetime">2011-06-02T20:45:26Z</modified_on>
+          <modified_by url="https://mingle.curvedms.org/api/v2/users/27.xml">
+            <name>Chris</name>
+            <login>chris</login>
+          </modified_by>
+          <created_by url="https://mingle.curvedms.org/api/v2/users/27.xml">
+            <name>Chris</name>
+            <login>chris</login>
+          </created_by>
+          <properties type="array">
+            <property type_description="Managed text list" hidden="false">
+              <name>Card Type</name>
+              <value>QA</value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Card Status</name>
+              <value>Reported</value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Module</name>
+              <value>Charting</value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Product Priority</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Department Priority</name>
+              <value>Low</value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Development Priority</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Escalation Level</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Date" hidden="false">
+              <name>Reported Date</name>
+              <value type="date">2011-06-02</value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Release Reported</name>
+              <value>3.36</value>
+            </property>
+            <property type_description="Automatically generated from the team list" hidden="false">
+              <name>Requirements Person</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Automatically generated from the team list" hidden="false">
+              <name>Design Person</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Automatically generated from the team list" hidden="false">
+              <name>Developer</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Any number" hidden="true">
+              <name>Developer Estimate</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Any text" hidden="false">
+              <name>Link to Estimate</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Database</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Automatically generated from the team list" hidden="false">
+              <name>QA Person</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Customer Service Expert</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Ticket Number</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Date" hidden="false">
+              <name>Deployed On</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Release Planned</name>
+              <value>Unassigned to Release</value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Fix Type</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Any text" hidden="false">
+              <name>Link to Wave</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Card" hidden="false">
+              <name>Master Card Number</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Any text" hidden="false">
+              <name>Master Ticket Number</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="true">
+              <name>Requires Tech Review</name>
+              <value>No</value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>SRED Assessment</name>
+              <value>No</value>
+            </property>
+            <property type_description="Any text" hidden="false">
+              <name>SRED Doc</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Change to Conversions Script?</name>
+              <value nil="true"></value>
+            </property>
+            <property type_description="Managed text list" hidden="false">
+              <name>Data Fix Type</name>
+              <value nil="true"></value>
+            </property>
+          </properties>
+          <tags>
+          </tags>
+        </card>
+      </cards>
+
+    http_version: "1.1"
