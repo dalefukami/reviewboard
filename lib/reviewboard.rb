@@ -48,16 +48,44 @@ module ReviewBoard
       value = JSON.parse(response.body)
     end
 
-    def get_review_diffs(review_number)
-      #XXX Used?
-      review_path = "review-requests/#{review_number}/diffs/1/files"
-      response = make_request "#{review_path}/"
+    def get_request_diffs(request_id)
+      response = make_request "review-requests/#{request_id}/diffs/"
 
+      value = JSON.parse(response.body)
+      value['diffs']
+    end
+
+    def get_latest_diff_id(request_id)
+      diffs = get_request_diffs request_id
+      max_diff = diffs.max {|a,b| a['revision'].to_i <=> b['revision'].to_i}
+      max_diff['revision']
+    end
+
+    def get_latest_diff(request_id)
+      latest_diff_id = get_latest_diff_id request_id
+      response = make_request "review-requests/#{request_id}/diffs/#{latest_diff_id}/"
       value = JSON.parse(response.body)
     end
 
-    def get_review_diff_chunks(review_number, diff_id, file_diff_id)
-      response = make_request "review-requests/#{review_number}/diffs/#{diff_id}/files/#{file_diff_id}/"
+    def get_latest_diff_files(request_id)
+      latest_diff_id = get_latest_diff_id request_id
+      response = make_request "review-requests/#{request_id}/diffs/#{latest_diff_id}/files/"
+      value = JSON.parse(response.body)
+      value['files']
+    end
+
+    def get_diff_file_comments(request_id)
+      latest_diff_id = get_latest_diff_id request_id
+      files = get_latest_diff_files request_id
+
+      filediff_id = files[0]['id']
+      response = make_request "review-requests/#{request_id}/diffs/#{latest_diff_id}/files/#{filediff_id}/diff-comments/"
+      value = JSON.parse(response.body)
+      value['diff_comments']
+    end
+
+    def get_review_diff_chunks(request_id, diff_id, file_diff_id)
+      response = make_request "review-requests/#{request_id}/diffs/#{diff_id}/files/#{file_diff_id}/"
 
       value = JSON.parse(response.body)
     end

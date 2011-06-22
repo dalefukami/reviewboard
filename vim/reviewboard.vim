@@ -56,7 +56,7 @@ endfunction
 function! s:RBSaveComment()
     let l:content = join(getline(0,'$'),"\n")
     echo l:content
-    echo system( "/home/dale/projects/review_board/bin/reviewboard.rb comment  -q 494 -r 761 -l ".b:line_number." -c \"".l:content."\" -n ".b:num_lines." -d 25083" )
+    echo system( "/home/dale/projects/review_board/bin/reviewboard.rb comment  -q 494 -r 761 -l ".b:line_number." -c \"".l:content."\" -n ".b:num_lines." -f 25083 -d 1" )
 endfunction
 
 command! -range -nargs=? RBWindowOpen  <line1>,<line2>call s:RBWindowOpen(<args>)

@@ -30,7 +30,10 @@ module ReviewBoard
             opt.on( '-n', '--number_of_lines NUMBER', Integer, "Number of lines" ) do |val|
                 command.number_of_lines = val
             end
-            opt.on( '-d', '--filediff_id DIFF_ID', Integer, "File diff id" ) do |val|
+            opt.on( '-d', '--diff_id DIFF_ID', Integer, "Diff id" ) do |val|
+                command.diff_id = val
+            end
+            opt.on( '-f', '--filediff_id FILEDIFF_ID', Integer, "File diff id" ) do |val|
                 command.file_diff_id = val
             end
           end
@@ -45,9 +48,10 @@ module ReviewBoard
         end
 
         def execute
-          puts "Got a comment: [#{@comment}]"
           pp @rb.post_review_draft_comment( @request_id, @review_id, {:first_line => @line, :text => @comment, :num_lines => @number_of_lines, :filediff_id => @file_diff_id} )
           puts "Comment added"
+          #XXX Clean output
+          #XXX Error handling
         end
       end
     end
