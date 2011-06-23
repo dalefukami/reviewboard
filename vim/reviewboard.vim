@@ -61,3 +61,18 @@ endfunction
 
 command! -range -nargs=? RBWindowOpen  <line1>,<line2>call s:RBWindowOpen(<args>)
 map <Leader>rb :RBWindowOpen<CR>
+
+
+sign define comment text=cc texthl=Search
+
+function! s:RBtest()
+    let l:diff_json = system("/home/dale/projects/review_board/bin/reviewboard.rb diff -q 494")
+    let b:comments = eval(l:diff_json)
+    for l:comment in b:comments
+        echo l:comment
+        exec ":sign place ".l:comment['id']." line=".l:comment['first_line']." name=comment file=" .expand("%:p")
+    endfor
+endfunction
+
+command! RBtest  call s:RBtest()
+map <Leader>a :RBtest<CR>

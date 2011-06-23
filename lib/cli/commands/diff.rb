@@ -39,7 +39,7 @@ module ReviewBoard
               'num_lines' => comment['num_lines']
             }
           }
-          pp comment_details
+          puts comment_details.to_json
           #XXX Clean output
           #XXX Error handling
         end
