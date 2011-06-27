@@ -1,6 +1,7 @@
 require 'rubygems'
 require 'typhoeus'
 require 'json'
+require 'pp' #XXX temp
 
 module ReviewBoard
   class ReviewBoard
@@ -8,6 +9,17 @@ module ReviewBoard
       @user = user
       @pass = pass
       @base_url = url + "/api"
+    end
+
+    def get_reviews(users)
+      params = {
+        'status' => 'pending',
+        'to-users' => users,
+        'max-results' => '5'
+      }
+      response = make_request "review-requests/", params
+      value = JSON.parse(response.body)
+      value['review_requests']
     end
 
     def get_review_draft_id(review_number)
@@ -122,11 +134,12 @@ module ReviewBoard
 
     private
 
-    def make_request(resource)
+    def make_request(resource, params={})
       Typhoeus::Request.get(
         "#{@base_url}/#{resource}",
         :username => @user,
-        :password => @pass
+        :password => @pass,
+        :params => params
       )
     end
 
