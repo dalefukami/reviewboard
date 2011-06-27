@@ -5,7 +5,7 @@ module ReviewBoard
   module Cli
     module Command
       class Comment
-        attr_accessor :request_id, :review_id, :line, :comment, :number_of_lines, :file_diff_id
+        attr_accessor :request_id, :review_id, :line, :comment, :number_of_lines, :file_diff_id, :diff_id
 
         def initialize rb
           @rb = rb
@@ -30,7 +30,7 @@ module ReviewBoard
             opt.on( '-n', '--number_of_lines NUMBER', Integer, "Number of lines" ) do |val|
                 command.number_of_lines = val
             end
-            opt.on( '-d', '--diff_id DIFF_ID', Integer, "Diff id" ) do |val|
+            opt.on( '-d', '--diff_id DIFF_ID', Integer, "Diff id" ) do |val| #XXX  why did I need this?
                 command.diff_id = val
             end
             opt.on( '-f', '--filediff_id FILEDIFF_ID', Integer, "File diff id" ) do |val|
