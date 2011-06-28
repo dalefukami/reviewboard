@@ -60,7 +60,7 @@ endfunction
 
 let g:filediff_ids = {}
 let g:request_id = 0
-let g:review_id = 795
+let g:review_id = 811 "XXX Still hard coded
 let g:base_path = '/home/dale/www/cyclops/' "XXX User defined...alternatively, search for git root
 
 function! s:RBSaveComment()
@@ -68,7 +68,7 @@ function! s:RBSaveComment()
     let l:diff_filename = substitute(b:filename, "^".g:base_path, "", "")
     echo "got filename". l:diff_filename
     let l:filediff_id = g:filediff_ids["".l:diff_filename]
-    let l:command_options = "-q ".g:request_id." -r ".g:review_id." -l ".b:line_number." -c \"".l:content."\" -n ".b:num_lines." -f ".l:filediff_id." -d 1"
+    let l:command_options = "-q ".g:request_id." -r ".g:review_id." -l ".b:line_number." -c \"".l:content."\" -n ".b:num_lines." -f ".l:filediff_id." -d 1 --dest" "XXX Note that dest is hardcoded default for now
     echo "Run with options: [".l:command_options."]"
     echo system( "/home/dale/projects/review_board/bin/reviewboard.rb comment ". l:command_options )
 endfunction

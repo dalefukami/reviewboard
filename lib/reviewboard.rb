@@ -102,9 +102,8 @@ module ReviewBoard
       value = JSON.parse(response.body)
     end
 
-    def get_new_file_line_map(review_number)
-      #XXX Not really reviewboards responsibility. Pull out to the review class and just call get_review_diff_chunks?
-      review_path = "review-requests/#{review_number}/diffs/1/files/25083"
+    def get_file_line_map(request_id, diff_number, file_diff_id)
+      review_path = "review-requests/#{request_id}/diffs/#{diff_number}/files/#{file_diff_id}"
       response = make_request "#{review_path}/"
 
       value = JSON.parse(response.body)
@@ -121,8 +120,7 @@ module ReviewBoard
         end
       end
 
-      line_maps = {'source' => source_line_map, 'new' => new_line_map}
-      pp line_maps
+      line_maps = {'source' => source_line_map, 'dest' => new_line_map}
     end
 
     def post_review_draft_comment(review_number, review_id, comment_info)
