@@ -10,7 +10,7 @@ function! s:RBWindowOpen() range
     let s:rb_buffer_last_winnr = winnr()
     let l:win_size = g:yankring_window_height
 
-    let g:rb_filename = expand("%:t")
+    let g:rb_filename = expand("%:p")
 
     if bufwinnr(s:rb_buffer_id) == -1
         " Special consideration was involved with these sequence
@@ -58,16 +58,18 @@ endfunction
 
 
 
-let g:filediff_ids = { 'chart_controller.php': '25811' }
+let g:filediff_ids = {}
 let g:request_id = 0
-let g:review_id = 766
+let g:review_id = 795
+let g:base_path = '/home/dale/www/cyclops/' "XXX User defined...alternatively, search for git root
+
 function! s:RBSaveComment()
     let l:content = join(getline(0,'$'),"\n")
-    echo "got filename". b:filename
-    let l:filediff_id = g:filediff_ids["".b:filename]
+    let l:diff_filename = substitute(b:filename, "^".g:base_path, "", "")
+    echo "got filename". l:diff_filename
+    let l:filediff_id = g:filediff_ids["".l:diff_filename]
     let l:command_options = "-q ".g:request_id." -r ".g:review_id." -l ".b:line_number." -c \"".l:content."\" -n ".b:num_lines." -f ".l:filediff_id." -d 1"
-    "echo "Run with options: [".l:command_options."]"
-    "return
+    echo "Run with options: [".l:command_options."]"
     echo system( "/home/dale/projects/review_board/bin/reviewboard.rb comment ". l:command_options )
 endfunction
 
@@ -80,7 +82,7 @@ sign define comment text=cc texthl=Search
 
 function! s:RBtest()
     let l:diff_json = system("/home/dale/projects/review_board/bin/reviewboard.rb diff -q 494")
-    let b:comments = eval(l:diff_json)
+    silent let b:comments = eval(l:diff_json)
     for l:comment in b:comments
         echo l:comment
         exec ":sign place ".l:comment['id']." line=".l:comment['first_line']." name=comment file=" .expand("%:p")
@@ -95,7 +97,7 @@ function! s:RBChooseReview()
     call s:RBWindowOpen()
 
     let l:json = system("/home/dale/projects/review_board/bin/reviewboard.rb request -u dale")
-    let b:reviews = eval(l:json)
+    silent let b:reviews = eval(l:json)
     for l:review in b:reviews
         call append('$', "[".l:review['id']."] ".l:review['summary'])
     endfor
@@ -113,13 +115,28 @@ function! s:RBOpenRequest()
 
     let g:request_id = l:request_id
 
+    call s:RBLoadFileDiffs()
+
     " Hide the window
     " XXX Extract?
-    hide
+    bdelete
 
     if bufwinnr(s:rb_buffer_last) != -1
         " If the buffer is visible, switch to it
         exec s:rb_buffer_last_winnr . "wincmd w"
     endif
 endfunction
+
+
+function! s:RBLoadFileDiffs()
+    let l:json = system("/home/dale/projects/review_board/bin/reviewboard.rb file_diffs -q ".g:request_id)
+    silent let b:filediffs = eval(l:json)
+    let g:filediff_ids = {}
+    for l:filediff in b:filediffs
+        let g:filediff_ids[ l:filediff['dest_file'] ] = l:filediff['id']
+    endfor
+endfunction
+
+command! RBLoadFileDiffs  call s:RBLoadFileDiffs()
+
 
