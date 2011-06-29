@@ -60,7 +60,7 @@ endfunction
 
 let g:filediff_ids = {}
 let g:request_id = 0
-let g:review_id = 702 "XXX Still hard coded
+let g:review_id = 825 "XXX Still hard coded
 let g:base_path = '/home/dale/www/cyclops/' "XXX User defined...alternatively, search for git root
 let g:rb_command = '/home/dale/projects/reviewboard/bin/reviewboard.rb'
 

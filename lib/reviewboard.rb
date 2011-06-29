@@ -162,7 +162,8 @@ module ReviewBoard
       #XXX Not sure how to get this cookie back to save it. This doesn't seem to be the right place
       if @cookie.nil?
         @cookie = response.get_fields('set-cookie')[0]
-        File.open('/home/dale/.rb_cookie', 'w') {|f| f.write(@cookie) }
+        cookie_file_name = ENV['HOME']+"/.rb_cookie"
+        File.open(cookie_file_name, 'w') {|f| f.write(@cookie) }
       end
 
       response

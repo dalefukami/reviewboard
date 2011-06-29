@@ -35,18 +35,22 @@ module ReviewBoard
       def exit_with_usage msg
         puts msg
         puts
-        puts usage
+        usage
         exit 1
       end
 
       def usage(args = nil)
-        old_args = args || [@action, *self.args].compact
-        #XXX Add a usage message based on command list
+        puts "USAGE: reviewboard action [options]"
+        puts
+        puts "Available commands are:"
+        available_commands.each do |action|
+          puts "\t#{action}"
+        end
       end
 
       def get_command(action)
         if !command_exists action
-          return nil
+          exit_with_usage "Action is not valid"
         end
 
         require File.join(File.dirname(__FILE__), 'commands', action)
@@ -55,13 +59,15 @@ module ReviewBoard
       end
 
       def command_exists action
-        Dir[File.dirname(__FILE__) + '/commands/*.rb'].each do |file|
-          if action == File.basename(file, File.extname(file))
-            return true
-          end
-        end
+        return available_commands.include? action
+      end
 
-        return false
+      def available_commands
+        commands = []
+        Dir[File.dirname(__FILE__) + '/commands/*.rb'].each do |file|
+          commands.push(File.basename(file, File.extname(file)))
+        end
+        commands
       end
 
 
@@ -84,15 +90,18 @@ module ReviewBoard
       end
 
       def initialize_credentials
-        if File.exists?('/home/dale/.rb_cookie')
-          @cookie = File.open('/home/dale/.rb_cookie', 'r').read
+        cookie_file_name = ENV['HOME']+"/.rb_cookie"
+        rb_config_file_name = ENV['HOME']+"/.reviewboardrc"
+
+        if File.exists?(cookie_file_name)
+          @cookie = File.open(cookie_file_name, 'r').read
         else
           @user = ask("Reviewboard username: ") {|q| q.echo = true}
           @pass = ask("Reviewboard password: ") {|q| q.echo = false}
         end
 
-        if File.exists?('/home/dale/.reviewboardrc')
-          @rb_config = File.open('/home/dale/.reviewboardrc', 'r').read
+        if File.exists?(rb_config_file_name)
+          @rb_config = File.open(rb_config_file_name, 'r').read
           matches = @rb_config.match("REVIEWBOARD_URL\s*=\s*\"http://\(.*\)\"$")
           @url = matches[1]
         else
