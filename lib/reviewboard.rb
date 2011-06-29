@@ -20,20 +20,20 @@ module ReviewBoard
         'max-results' => '5'
       }
       response = get "review-requests/", params
-      value = JSON.parse(response)
+      value = JSON.parse(response.body)
       value['review_requests']
     end
 
     def get_review_draft_id(review_number)
       review_path = "review-requests/#{review_number}/reviews"
       response = get "#{review_path}/draft/"
-      if response.code === 404
+      if response.code === '404'
         return nil
-      elsif response.code != 301
+      elsif response.code != '301'
         return nil
       end
 
-      matches = response.headers_hash[:Location].match(".*#{review_path}/(\\d+)")
+      matches = response.get_fields('location')[0].match(".*#{review_path}/(\\d+)")
       draft_id = matches[1].to_i
     end
 
@@ -42,7 +42,7 @@ module ReviewBoard
       review_path = "review-requests/#{review_number}/reviews/#{review_id}"
       response = get "#{review_path}/"
 
-      value = JSON.parse(response)
+      value = JSON.parse(response.body)
       pp value
     end
 
@@ -51,7 +51,7 @@ module ReviewBoard
       review_path = "review-requests/#{review_number}/reviews/#{review_id}/diff-comments"
       response = get "#{review_path}/"
 
-      value = JSON.parse(response)
+      value = JSON.parse(response.body)
     end
 
     def get_review_comment(review_number, review_id, comment_id)
@@ -59,13 +59,13 @@ module ReviewBoard
       review_path = "review-requests/#{review_number}/reviews/#{review_id}/diff-comments/#{comment_id}"
       response = get "#{review_path}/"
 
-      value = JSON.parse(response)
+      value = JSON.parse(response.body)
     end
 
     def get_request_diffs(request_id)
       response = get "review-requests/#{request_id}/diffs/"
 
-      value = JSON.parse(response)
+      value = JSON.parse(response.body)
       value['diffs']
     end
 
@@ -78,13 +78,13 @@ module ReviewBoard
     def get_latest_diff(request_id)
       latest_diff_id = get_latest_diff_id request_id
       response = get "review-requests/#{request_id}/diffs/#{latest_diff_id}/"
-      value = JSON.parse(response)
+      value = JSON.parse(response.body)
     end
 
     def get_latest_diff_files(request_id)
       latest_diff_id = get_latest_diff_id request_id
       response = get "review-requests/#{request_id}/diffs/#{latest_diff_id}/files/"
-      value = JSON.parse(response)
+      value = JSON.parse(response.body)
       value['files']
     end
 
@@ -94,21 +94,21 @@ module ReviewBoard
 
       filediff_id = files[0]['id']
       response = get "review-requests/#{request_id}/diffs/#{latest_diff_id}/files/#{filediff_id}/diff-comments/"
-      value = JSON.parse(response)
+      value = JSON.parse(response.body)
       value['diff_comments']
     end
 
     def get_review_diff_chunks(request_id, diff_id, file_diff_id)
       response = get "review-requests/#{request_id}/diffs/#{diff_id}/files/#{file_diff_id}/"
 
-      value = JSON.parse(response)
+      value = JSON.parse(response.body)
     end
 
     def get_file_line_map(request_id, diff_number, file_diff_id)
       review_path = "review-requests/#{request_id}/diffs/#{diff_number}/files/#{file_diff_id}"
       response = get "#{review_path}/"
 
-      value = JSON.parse(response)
+      value = JSON.parse(response.body)
 
       source_line_map = {}
       new_line_map = {}
@@ -129,22 +129,21 @@ module ReviewBoard
       review_path = "review-requests/#{review_number}/reviews/#{review_id}/diff-comments"
       response = post "#{review_path}/", comment_info
 
-      JSON.parse(response)
+      JSON.parse(response.body)
     end
 
     private
 
     def get(resource, params={})
-      make_request Net::HTTP::Get, resource, params
+      make_request Net::HTTP::Get, resource + build_params(params)
     end
 
     def post(resource, params)
       make_request Net::HTTP::Post, resource, params
     end
 
-    def make_request http_method, resource, params
-      resource = "/api/#{resource}"
-      path = resource + build_params(params)
+    def make_request http_method, resource, params = {}
+      path = "/api/#{resource}"
 
       if @cookie.nil?
         req = http_method.new(path)
@@ -154,15 +153,19 @@ module ReviewBoard
         req = http_method.new(path, @headers)
       end
 
-      resp, data = @http.request(req)
+      if !params.empty?
+        req.set_form_data(params, ';')
+      end
+
+      response = @http.request(req)
 
       #XXX Not sure how to get this cookie back to save it. This doesn't seem to be the right place
       if @cookie.nil?
-        @cookie = resp.response['set-cookie']
+        @cookie = response.get_fields('set-cookie')[0]
         File.open('/home/dale/.rb_cookie', 'w') {|f| f.write(@cookie) }
       end
 
-      data
+      response
     end
 
     def build_params params

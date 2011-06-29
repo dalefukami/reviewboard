@@ -60,8 +60,9 @@ endfunction
 
 let g:filediff_ids = {}
 let g:request_id = 0
-let g:review_id = 811 "XXX Still hard coded
+let g:review_id = 702 "XXX Still hard coded
 let g:base_path = '/home/dale/www/cyclops/' "XXX User defined...alternatively, search for git root
+let g:rb_command = '/home/dale/projects/reviewboard/bin/reviewboard.rb'
 
 function! s:RBSaveComment()
     let l:content = join(getline(0,'$'),"\n")
@@ -70,7 +71,7 @@ function! s:RBSaveComment()
     let l:filediff_id = g:filediff_ids["".l:diff_filename]
     let l:command_options = "-q ".g:request_id." -r ".g:review_id." -l ".b:line_number." -c \"".l:content."\" -n ".b:num_lines." -f ".l:filediff_id." -d 1 --dest" "XXX Note that dest is hardcoded default for now
     echo "Run with options: [".l:command_options."]"
-    echo system( "/home/dale/projects/review_board/bin/reviewboard.rb comment ". l:command_options )
+    echo system( g:rb_command." comment ". l:command_options )
 endfunction
 
 command! -range -nargs=? RBWindowOpen  <line1>,<line2>call s:RBWindowOpen(<args>)
@@ -81,7 +82,7 @@ sign define comment text=cc texthl=Search
 
 
 function! s:RBtest()
-    let l:diff_json = system("/home/dale/projects/review_board/bin/reviewboard.rb diff -q 494")
+    let l:diff_json = system(g:rb_command." diff -q 494")
     silent let b:comments = eval(l:diff_json)
     for l:comment in b:comments
         echo l:comment
@@ -96,7 +97,7 @@ map <Leader>a :RBtest<CR>
 function! s:RBChooseReview()
     call s:RBWindowOpen()
 
-    let l:json = system("/home/dale/projects/review_board/bin/reviewboard.rb request -u dale")
+    let l:json = system(g:rb_command." request -u dale")
     silent let b:reviews = eval(l:json)
     for l:review in b:reviews
         call append('$', "[".l:review['id']."] ".l:review['summary'])
@@ -129,7 +130,7 @@ endfunction
 
 
 function! s:RBLoadFileDiffs()
-    let l:json = system("/home/dale/projects/review_board/bin/reviewboard.rb file_diffs -q ".g:request_id)
+    let l:json = system(g:rb_command." file_diffs -q ".g:request_id)
     silent let b:filediffs = eval(l:json)
     let g:filediff_ids = {}
     for l:filediff in b:filediffs
