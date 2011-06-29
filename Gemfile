@@ -16,3 +16,4 @@ end
 gem 'typhoeus'
 gem 'vcr'
 gem 'json'
+gem 'highline'

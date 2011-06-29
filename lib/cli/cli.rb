@@ -1,4 +1,5 @@
 require 'reviewboard'
+require 'highline/import'
 
 module ReviewBoard
   module Cli
@@ -6,10 +7,9 @@ module ReviewBoard
       def initialize(args)
         @args = args.dup
 
-        @user = "info"
-        @pass = "*******"
-        @url = "http://*******"
-        @rb = ReviewBoard.new @user, @pass, @url
+        initialize_credentials
+
+        @rb = ReviewBoard.new @user, @pass, @url, @cookie
       end
 
       def execute!
@@ -82,6 +82,24 @@ module ReviewBoard
       rescue NameError
         nil
       end
+
+      def initialize_credentials
+        if File.exists?('/home/dale/.rb_cookie')
+          @cookie = File.open('/home/dale/.rb_cookie', 'r').read
+        else
+          @user = ask("Reviewboard username: ") {|q| q.echo = true}
+          @pass = ask("Reviewboard password: ") {|q| q.echo = false}
+        end
+
+        if File.exists?('/home/dale/.reviewboardrc')
+          @rb_config = File.open('/home/dale/.reviewboardrc', 'r').read
+          matches = @rb_config.match("REVIEWBOARD_URL\s*=\s*\"http://\(.*\)\"$")
+          @url = matches[1]
+        else
+          @url = ask("Reviewboard url: ") {|q| q.echo = true}
+        end
+      end
+
     end
   end
 end
