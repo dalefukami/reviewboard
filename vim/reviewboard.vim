@@ -60,7 +60,7 @@ endfunction
 
 let g:filediff_ids = {}
 let g:request_id = 0
-let g:review_id = 825 "XXX Still hard coded
+let g:review_id = 878 "XXX Still hard coded
 let g:base_path = '/home/dale/www/cyclops/' "XXX User defined...alternatively, search for git root
 let g:rb_command = '/home/dale/projects/reviewboard/bin/reviewboard.rb'
 
@@ -118,14 +118,9 @@ function! s:RBOpenRequest()
 
     call s:RBLoadFileDiffs()
 
-    " Hide the window
-    " XXX Extract?
-    bdelete
+    call s:RBReturnToWindow()
 
-    if bufwinnr(s:rb_buffer_last) != -1
-        " If the buffer is visible, switch to it
-        exec s:rb_buffer_last_winnr . "wincmd w"
-    endif
+    call s:RBListFiles()
 endfunction
 
 
@@ -137,7 +132,34 @@ function! s:RBLoadFileDiffs()
         let g:filediff_ids[ l:filediff['dest_file'] ] = l:filediff['id']
     endfor
 endfunction
-
 command! RBLoadFileDiffs  call s:RBLoadFileDiffs()
 
+function! s:RBListFiles()
+    call s:RBWindowOpen()
+
+    for [l:file_name, l:file_id] in items(g:filediff_ids)
+        call append('$', l:file_name)
+    endfor
+
+    nnoremap <buffer> <silent> <CR> :call <SID>RBOpenFile("edit")<CR>
+    nnoremap <buffer> <silent> s :call <SID>RBOpenFile("split")<CR>
+    nnoremap <buffer> <silent> v :call <SID>RBOpenFile("vsplit")<CR>
+endfunction
+command! RBListFiles  call s:RBListFiles()
+
+function! s:RBOpenFile(command)
+    let l:file_name = g:base_path . getline('.')
+
+    call s:RBReturnToWindow()
+
+    exec a:command." ".l:file_name
+endfunction
+
+function! s:RBReturnToWindow()
+    bdelete
+    if bufwinnr(s:rb_buffer_last) != -1
+        " If the buffer is visible, switch to it
+        exec s:rb_buffer_last_winnr . "wincmd w"
+    endif
+endfunction
 
