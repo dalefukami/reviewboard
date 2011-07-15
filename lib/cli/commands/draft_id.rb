@@ -29,7 +29,7 @@ module ReviewBoard
 
         def execute
           draft_id = @rb.get_review_draft_id(@request_id)
-          puts "You got a draft_id of #{draft_id}"
+          puts "#{draft_id}"
         end
       end
     end

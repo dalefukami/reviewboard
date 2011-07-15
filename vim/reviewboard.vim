@@ -60,7 +60,7 @@ endfunction
 
 let g:filediff_ids = {}
 let g:request_id = 0
-let g:review_id = 878 "XXX Still hard coded
+let g:review_id = 0
 let g:base_path = '/home/dale/www/cyclops/' "XXX User defined...alternatively, search for git root
 let g:rb_command = '/home/dale/projects/reviewboard/bin/reviewboard.rb'
 
@@ -117,6 +117,7 @@ function! s:RBOpenRequest()
     let g:request_id = l:request_id
 
     call s:RBLoadFileDiffs()
+    call s:RBLoadCurrentDraft()
 
     call s:RBReturnToWindow()
 
@@ -133,6 +134,10 @@ function! s:RBLoadFileDiffs()
     endfor
 endfunction
 command! RBLoadFileDiffs  call s:RBLoadFileDiffs()
+
+function! s:RBLoadCurrentDraft()
+    let g:review_id = + system(g:rb_command." draft_id -q ".g:request_id)
+endfunction
 
 function! s:RBListFiles()
     call s:RBWindowOpen()
