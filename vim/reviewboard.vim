@@ -94,25 +94,33 @@ command! RBtest  call s:RBtest()
 map <Leader>a :RBtest<CR>
 
 
-function! s:RBChooseReview()
-    call s:RBWindowOpen()
+function! s:RBChooseReview(...)
+    if a:0 < 1
+        call s:RBWindowOpen()
 
-    let l:json = system(g:rb_command." request -u dale")
-    silent let b:reviews = eval(l:json)
-    for l:review in b:reviews
-        call append('$', "[".l:review['id']."] ".l:review['summary'])
-    endfor
+        let l:json = system(g:rb_command." request -u dale")
+        silent let b:reviews = eval(l:json)
+        for l:review in b:reviews
+            call append('$', "[".l:review['id']."] ".l:review['summary'])
+        endfor
 
-    nnoremap <buffer> <silent> <CR>  :call <SID>RBOpenRequest()<CR>
+        nnoremap <buffer> <silent> <CR>  :call <SID>RBOpenRequest()<CR>
+    else
+        call <SID>RBOpenRequest(a:1)
+    endif
 endfunction
 
-command! RBChooseReview  call s:RBChooseReview()
+command! -nargs=? RBChooseReview  call s:RBChooseReview(<args>)
 
 
-function! s:RBOpenRequest()
-    let l:line = getline('.')
-    let l:matches = matchlist(l:line, '^\[\([0-9]\+\)\]')
-    let l:request_id = l:matches[1]
+function! s:RBOpenRequest(...)
+    if a:0 < 1
+        let l:line = getline('.')
+        let l:matches = matchlist(l:line, '^\[\([0-9]\+\)\]')
+        let l:request_id = l:matches[1]
+    else
+        let l:request_id = a:1
+    endif
 
     let g:request_id = l:request_id
 
