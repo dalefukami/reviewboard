@@ -77,23 +77,26 @@ endfunction
 command! -range -nargs=? RBWindowOpen  <line1>,<line2>call s:RBWindowOpen(<args>)
 map <Leader>rb :RBWindowOpen<CR>
 
-sign define comment text=cc texthl=Search
+sign define draft_comment text=cc texthl=RBDraftComment
+sign define public_comment text=pc texthl=RBPublicComment
+
 function! s:RBLabelComments()
     let l:diff_json = system(g:rb_command." diff -q ".g:request_id)
     silent let b:comments = eval(l:diff_json)
     silent let b:comment_signs = {}
     for l:comment in b:comments
-        echo l:comment
         for i in range(1, l:comment['num_lines'])
             "Sign ids must be numbers
             let l:sign_id = l:comment['id']+(i*1000000)
             let l:line_number = l:comment['first_line']+i-1
-            echo l:sign_id
-            echo l:line_number
+            let l:sign_name = 'draft_comment'
+            if l:comment['public'] == 'true'
+                let l:sign_name = 'public_comment'
+            endif
+
+            let l:line_number = l:comment['first_line']+i-1
             let b:comment_signs[l:line_number] = l:sign_id
-            echo b:comment_signs
-            echo ":sign place ".l:sign_id." line=".l:line_number." name=comment file=" .expand("%:p")
-            exec ":sign place ".l:sign_id." line=".l:line_number." name=comment file=" .expand("%:p")
+            exec ":sign place ".l:sign_id." line=".l:line_number." name=".l:sign_name." file=" .expand("%:p")
         endfor
     endfor
 endfunction
@@ -154,6 +157,9 @@ function! s:RBOpenRequest(...)
     call s:RBReturnToWindow()
 
     call s:RBListFiles()
+
+    au BufNewFile,BufRead * highlight RBPublicComment term=bold ctermfg=0 ctermbg=69
+    au BufNewFile,BufRead * highlight RBDraftComment term=bold ctermfg=0 ctermbg=2
 endfunction
 
 

@@ -32,11 +32,15 @@ module ReviewBoard
         def execute
           comments = @rb.get_diff_file_comments( @request_id )
           comment_details = comments.map { |comment|
+#XXX             p comment
+#XXX             puts ""
             {
               'id' => comment['id'],
               'first_line' => comment['first_line'],
               'text' => comment['text'],
-              'num_lines' => comment['num_lines']
+              'num_lines' => comment['num_lines'],
+              'public' => comment['public'].to_s,
+              'author' => comment['links']['user']['title'] #XXX Don't think I like accessing the user like this...probably need a fetch on the comment itself?
             }
           }
           puts comment_details.to_json
