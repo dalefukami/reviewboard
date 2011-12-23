@@ -67,10 +67,8 @@ let g:rb_command = '/home/dale/projects/reviewboard/bin/reviewboard.rb'
 function! s:RBSaveComment()
     let l:content = join(getline(0,'$'),"\n")
     let l:diff_filename = substitute(b:filename, "^".g:base_path, "", "")
-    echo "got filename". l:diff_filename
     let l:filediff_id = g:filediff_ids["".l:diff_filename]
     let l:command_options = "-q ".g:request_id." -r ".g:review_id." -l ".b:line_number." -c \"".l:content."\" -n ".b:num_lines." -f ".l:filediff_id." -d 1 --dest" "XXX Note that dest is hardcoded default for now
-    echo "Run with options: [".l:command_options."]"
     echo system( g:rb_command." comment ". l:command_options )
 endfunction
 
@@ -82,7 +80,7 @@ sign define public_comment text=pc texthl=RBPublicComment
 
 function! s:RBLabelComments()
     let l:diff_json = system(g:rb_command." diff -q ".g:request_id)
-    silent let b:comments = eval(l:diff_json)
+    execute "let b:comments=". l:diff_json
     silent let b:comment_signs = {}
     for l:comment in b:comments
         for i in range(1, l:comment['num_lines'])
@@ -126,7 +124,7 @@ function! s:RBChooseReview(...)
         call s:RBWindowOpen()
 
         let l:json = system(g:rb_command." request -u dale")
-        silent let b:reviews = eval(l:json)
+        execute "let b:reviews=".l:json
         for l:review in b:reviews
             call append('$', "[".l:review['id']."] ".l:review['summary'])
         endfor
@@ -165,7 +163,7 @@ endfunction
 
 function! s:RBLoadFileDiffs()
     let l:json = system(g:rb_command." file_diffs -q ".g:request_id)
-    silent let b:filediffs = eval(l:json)
+    execute "let b:filediffs=".l:json
     let g:filediff_ids = {}
     for l:filediff in b:filediffs
         let g:filediff_ids[ l:filediff['dest_file'] ] = l:filediff['id']
