@@ -77,21 +77,45 @@ endfunction
 command! -range -nargs=? RBWindowOpen  <line1>,<line2>call s:RBWindowOpen(<args>)
 map <Leader>rb :RBWindowOpen<CR>
 
-
 sign define comment text=cc texthl=Search
-
-
-function! s:RBtest()
-    let l:diff_json = system(g:rb_command." diff -q 494")
+function! s:RBLabelComments()
+    let l:diff_json = system(g:rb_command." diff -q ".g:request_id)
     silent let b:comments = eval(l:diff_json)
+    silent let b:comment_signs = {}
     for l:comment in b:comments
         echo l:comment
-        exec ":sign place ".l:comment['id']." line=".l:comment['first_line']." name=comment file=" .expand("%:p")
+        for i in range(1, l:comment['num_lines'])
+            "Sign ids must be numbers
+            let l:sign_id = l:comment['id']+(i*1000000)
+            let l:line_number = l:comment['first_line']+i-1
+            echo l:sign_id
+            echo l:line_number
+            let b:comment_signs[l:line_number] = l:sign_id
+            echo b:comment_signs
+            echo ":sign place ".l:sign_id." line=".l:line_number." name=comment file=" .expand("%:p")
+            exec ":sign place ".l:sign_id." line=".l:line_number." name=comment file=" .expand("%:p")
+        endfor
     endfor
 endfunction
 
-command! RBtest  call s:RBtest()
-map <Leader>a :RBtest<CR>
+command! RBLabelComments call s:RBLabelComments()
+map <Leader>cc :RBLabelComments<CR>
+
+function! s:RBDisplayComment()
+    let l:current_line = line(".")
+    for l:comment in b:comments
+        for i in range(1, l:comment['num_lines'])
+            let l:line_number = l:comment['first_line']+i-1
+            if l:line_number == l:current_line
+                call s:RBWindowOpen()
+                silent %d
+                let @c = l:comment['text']
+                put! c
+            endif
+        endfor
+    endfor
+endfunction
+command! RBDisplayComment call s:RBDisplayComment()
 
 
 function! s:RBChooseReview(...)
@@ -166,6 +190,7 @@ function! s:RBOpenFile(command)
     call s:RBReturnToWindow()
 
     exec a:command." ".l:file_name
+    call s:RBLabelComments()
 endfunction
 
 function! s:RBReturnToWindow()
