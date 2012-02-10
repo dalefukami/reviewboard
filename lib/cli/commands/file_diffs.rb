@@ -36,6 +36,7 @@ module ReviewBoard
             {
               'id' => diff['id'],
               'dest_file' => diff['dest_file'],
+              'source_revision' => diff['source_revision'],
             }
           }
           puts details.to_json

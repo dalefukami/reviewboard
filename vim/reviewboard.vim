@@ -58,7 +58,7 @@ endfunction
 
 
 
-let g:filediff_ids = {}
+let g:filediffs = {}
 let g:request_id = 0
 let g:review_id = 0
 let g:base_path = '/home/dale/www/cyclops/' "XXX User defined...alternatively, search for git root
@@ -67,7 +67,7 @@ let g:rb_command = '/home/dale/projects/reviewboard/bin/reviewboard.rb'
 function! s:RBSaveComment()
     let l:content = join(getline(0,'$'),"\n")
     let l:diff_filename = substitute(b:filename, "^".g:base_path, "", "")
-    let l:filediff_id = g:filediff_ids["".l:diff_filename]
+    let l:filediff_id = g:filediffs["".l:diff_filename]['id']
     let l:command_options = "-q ".g:request_id." -r ".g:review_id." -l ".b:line_number." -c \"".l:content."\" -n ".b:num_lines." -f ".l:filediff_id." -d 1 --dest" "XXX Note that dest is hardcoded default for now
     echo system( g:rb_command." comment ". l:command_options )
 endfunction
@@ -164,9 +164,9 @@ endfunction
 function! s:RBLoadFileDiffs()
     let l:json = system(g:rb_command." file_diffs -q ".g:request_id)
     execute "let b:filediffs=".l:json
-    let g:filediff_ids = {}
+    let g:filediffs = {}
     for l:filediff in b:filediffs
-        let g:filediff_ids[ l:filediff['dest_file'] ] = l:filediff['id']
+        let g:filediffs[ l:filediff['dest_file'] ] = l:filediff
     endfor
 endfunction
 command! RBLoadFileDiffs  call s:RBLoadFileDiffs()
@@ -178,7 +178,7 @@ endfunction
 function! s:RBListFiles()
     call s:RBWindowOpen()
 
-    for [l:file_name, l:file_id] in items(g:filediff_ids)
+    for [l:file_name, l:file_diff] in items(g:filediffs)
         call append('$', l:file_name)
     endfor
 
@@ -205,3 +205,16 @@ function! s:RBReturnToWindow()
     endif
 endfunction
 
+function! s:RBDiffSource()
+    " Duplicated. Refactor.
+    let l:diff_filename = substitute(expand("%:p"), "^".g:base_path, "", "")
+    let l:filediff_source_revision = g:filediffs["".l:diff_filename]['source_revision']
+
+    let temp = tempname()
+    vsp `=temp`
+    execute "r !git show ".l:filediff_source_revision
+    diffthis
+    wincmd p
+    diffthis
+endfunction
+command! RBDiffSource  call s:RBDiffSource()
