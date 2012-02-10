@@ -3,6 +3,12 @@ let s:rb_buffer_id = -1
 let g:rb_window_height = 8
 let s:rb_buffer_name       = '[ReviewBoard]'
 
+function! s:RBCommand(command_args)
+    let l:json = system(g:rb_command." ".a:command_args)
+    execute "let l:object=".l:json
+    return l:object
+endfunction
+
 function! s:RBWindowOpen() range
 
     " Save the current buffer number.
@@ -64,6 +70,12 @@ let g:review_id = 0
 let g:base_path = '/home/dale/www/cyclops/' "XXX User defined...alternatively, search for git root
 let g:rb_command = '/home/dale/projects/reviewboard/bin/reviewboard.rb'
 
+function! s:RBRelabelComments()
+    sign unplace *
+    let b:comment_signs = {}
+    call s:RBLabelComments()
+endfunction
+
 function! s:RBSaveComment()
     let l:content = join(getline(0,'$'),"\n")
     let l:diff_filename = substitute(b:filename, "^".g:base_path, "", "")
@@ -72,7 +84,10 @@ function! s:RBSaveComment()
         call s:RBCreateDraft()
     endif
     let l:command_options = "-q ".g:request_id." -r ".g:review_id." -l ".b:line_number." -c \"".l:content."\" -n ".b:num_lines." -f ".l:filediff_id." -d 1 --dest" "XXX Note that dest is hardcoded default for now
-    echo system( g:rb_command." comment ". l:command_options )
+    let l:new_comment = s:RBCommand( " comment ". l:command_options )
+    call s:RBReturnToWindow()
+    call add(b:comments, l:new_comment)
+    call s:RBRelabelComments()
 endfunction
 
 command! -range -nargs=? RBWindowOpen  <line1>,<line2>call s:RBWindowOpen(<args>)
@@ -82,8 +97,10 @@ sign define draft_comment text=cc texthl=RBDraftComment
 sign define public_comment text=pc texthl=RBPublicComment
 
 function! s:RBLabelComments()
-    let l:diff_json = system(g:rb_command." diff -q ".g:request_id)
-    execute "let b:comments=". l:diff_json
+    if !exists("b:comments")
+        let b:comments = s:RBCommand("diff -q ".g:request_id)
+    endif
+
     silent let b:comment_signs = {}
     for l:comment in b:comments
         for i in range(1, l:comment['num_lines'])
@@ -101,9 +118,8 @@ function! s:RBLabelComments()
         endfor
     endfor
 endfunction
-
 command! RBLabelComments call s:RBLabelComments()
-map <Leader>cc :RBLabelComments<CR>
+"XXX map <Leader>cc :RBLabelComments<CR>
 
 function! s:RBDisplayComment()
     let l:current_line = line(".")

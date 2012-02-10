@@ -65,10 +65,20 @@ module ReviewBoard
             diff_line = line_map[@file_version][@line]
           end
 
-          pp @rb.post_review_draft_comment( @request_id, @review_id, {:first_line => diff_line, :text => @comment, :num_lines => @number_of_lines, :filediff_id => @file_diff_id} )
-          puts "Comment added"
-          #XXX Clean output
           #XXX Error handling
+          result = @rb.post_review_draft_comment( @request_id, @review_id, {:first_line => diff_line, :text => @comment, :num_lines => @number_of_lines, :filediff_id => @file_diff_id} )
+
+          comment = result['diff_comment']
+          details = {
+            'id' => comment['id'],
+            'first_line' => comment['first_line'],
+            'text' => comment['text'],
+            'num_lines' => comment['num_lines'],
+            'public' => comment['public'].to_s,
+            'author' => comment['links']['user']['title']
+          }
+
+          puts details.to_json
         end
       end
     end
