@@ -14,7 +14,7 @@ function! s:RBWindowOpen() range
     " Save the current buffer number.
     let s:rb_buffer_last       = bufnr('%')
     let s:rb_buffer_last_winnr = winnr()
-    let l:win_size = g:yankring_window_height
+    let l:win_size = g:rb_window_height
 
     let g:rb_filename = expand("%:p")
 
@@ -24,9 +24,9 @@ function! s:RBWindowOpen() range
         "     First, split the current buffer.
         "     Second, edit a new file.
         "     Third record the buffer number.
-        " If a different sequence is followed when the yankring
-        " buffer is closed, Vim's alternate buffer is the yanking
-        " instead of the original buffer before the yankring 
+        " If a different sequence is followed when the reviewboard
+        " buffer is closed, Vim's alternate buffer is the reviewboard
+        " instead of the original buffer before the reviewboard
         " was shown.
         let cmd_mod = ''
         if v:version >= 700
