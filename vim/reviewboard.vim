@@ -233,11 +233,24 @@ function! s:RBDiffSource()
     let l:diff_filename = substitute(expand("%:p"), "^".g:base_path, "", "")
     let l:filediff_source_revision = g:filediffs["".l:diff_filename]['source_revision']
 
-    let temp = tempname()
-    vsp `=temp`
+    call s:RBOpenTempBuffer()
+
     execute "r !git show ".l:filediff_source_revision
+    :0d
     diffthis
     wincmd p
     diffthis
 endfunction
 command! RBDiffSource  call s:RBDiffSource()
+
+function! s:RBOpenTempBuffer()
+    vnew
+    setlocal buftype=nofile
+    setlocal bufhidden=hide
+    setlocal noswapfile
+    setlocal nowrap
+    setlocal nonumber
+    setlocal nobuflisted
+    setlocal noreadonly
+    setlocal modifiable
+endfunction
