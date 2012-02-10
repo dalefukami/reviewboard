@@ -37,6 +37,19 @@ module ReviewBoard
       draft_id = matches[1].to_i
     end
 
+    def create_review_draft(review_number)
+      review_path = "review-requests/#{review_number}/reviews/"
+      response = post review_path, {:api_format => 'json'}
+      if response.code === '404'
+        return nil
+      elsif response.code != '201'
+        return nil
+      end
+
+      matches = response.get_fields('location')[0].match(".*#{review_path}(\\d+)")
+      draft_id = matches[1].to_i
+    end
+
     def get_review_draft(review_number, review_id)
       #XXX Do we really need the draft object or can we just do everything without "formally" getting it?
       review_path = "review-requests/#{review_number}/reviews/#{review_id}"

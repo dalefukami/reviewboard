@@ -68,6 +68,9 @@ function! s:RBSaveComment()
     let l:content = join(getline(0,'$'),"\n")
     let l:diff_filename = substitute(b:filename, "^".g:base_path, "", "")
     let l:filediff_id = g:filediffs["".l:diff_filename]['id']
+    if g:review_id == ""
+        call s:RBCreateDraft()
+    endif
     let l:command_options = "-q ".g:request_id." -r ".g:review_id." -l ".b:line_number." -c \"".l:content."\" -n ".b:num_lines." -f ".l:filediff_id." -d 1 --dest" "XXX Note that dest is hardcoded default for now
     echo system( g:rb_command." comment ". l:command_options )
 endfunction
@@ -173,6 +176,10 @@ command! RBLoadFileDiffs  call s:RBLoadFileDiffs()
 
 function! s:RBLoadCurrentDraft()
     let g:review_id = + system(g:rb_command." draft_id -q ".g:request_id)
+endfunction
+
+function! s:RBCreateDraft()
+    let g:review_id = + system(g:rb_command." draft_id -q ".g:request_id." --create")
 endfunction
 
 function! s:RBListFiles()
